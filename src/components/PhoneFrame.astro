@@ -1,0 +1,51 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class:list={['phone', className]}>
+  <div class="screen">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .phone {
+    --bezel: calc(var(--phone-width) * 0.032);
+    --radius: calc(var(--phone-width) * 0.155);
+
+    width: var(--phone-width);
+    padding: var(--bezel);
+    border: 1px solid var(--phone-edge);
+    border-radius: var(--radius);
+    background: var(--phone-bezel);
+    box-shadow: var(--phone-shadow);
+  }
+
+  .screen {
+    position: relative;
+    overflow: hidden;
+    border-radius: calc(var(--radius) - var(--bezel));
+  }
+
+  .screen::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--phone-width) * 0.032);
+    left: 50%;
+    width: 31%;
+    height: calc(var(--phone-width) * 0.08);
+    border-radius: 999px;
+    background: #000;
+    translate: -50% 0;
+  }
+
+  .screen :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>

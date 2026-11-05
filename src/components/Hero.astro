@@ -1,0 +1,169 @@
+---
+import HeroPhones from './HeroPhones.astro';
+import StoreBadges from './StoreBadges.astro';
+import WaitlistForm from './WaitlistForm.astro';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="layout page-width">
+    <div class="copy">
+      <p class="eyebrow">Muy pronto en iOS, Android y web</p>
+      <h1 id="hero-title" class="title">
+        Entrena a tu <span class="accent">ritmo.</span>
+      </h1>
+      <p class="lead">
+        Intervalos, running y fuerza en una sola app. Cada día te dice lo que
+        toca y te guía con voz en cada cambio, para que solo tengas que moverte.
+      </p>
+      <WaitlistForm id="apuntate" source="hero" />
+      <p class="note">
+        Solo te escribimos cuando salga. Puedes darte de baja con un clic.{' '}
+        <a href="/privacidad">Privacidad</a>
+      </p>
+      <StoreBadges class="stores" />
+    </div>
+    <HeroPhones />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow-x: clip;
+    padding-top: 24px;
+  }
+
+  .glow {
+    position: absolute;
+    inset: -140px 0 auto;
+    z-index: -1;
+    height: 900px;
+    background: radial-gradient(
+      ellipse 460px 520px at 60px 240px,
+      var(--hero-glow),
+      color-mix(in srgb, var(--hero-glow) 45%, transparent) 50%,
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  .layout {
+    position: relative;
+    display: grid;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px 7px 12px;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: var(--pill);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--eyebrow-dot);
+  }
+
+  .title {
+    margin-top: 22px;
+    font-family: var(--font-display);
+    font-size: clamp(52px, 10.5vw + 12px, 96px);
+    font-weight: 800;
+    line-height: 0.96;
+    letter-spacing: -0.045em;
+  }
+
+  .accent {
+    display: block;
+    width: fit-content;
+    padding-bottom: 0.06em;
+    background: var(--hero-accent);
+    background-clip: text;
+    color: transparent;
+  }
+
+  .lead {
+    max-width: 540px;
+    margin-top: 22px;
+    color: var(--nav-link);
+    font-size: 17px;
+    line-height: 26px;
+  }
+
+  .copy :global(.waitlist) {
+    margin-top: 22px;
+  }
+
+  .note {
+    margin-top: 12px;
+    color: var(--sub);
+    font-size: 13px;
+    line-height: 19px;
+  }
+
+  .note a {
+    color: inherit;
+  }
+
+  .note a:hover {
+    color: var(--ink);
+  }
+
+  .copy :global(.stores) {
+    margin-top: 28px;
+  }
+
+  .layout > :global(.phones) {
+    justify-self: center;
+    margin-top: 30px;
+  }
+
+  @media (min-width: 640px) {
+    .lead {
+      max-width: 490px;
+      font-size: 20px;
+      line-height: 31px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .hero {
+      padding-top: 47px;
+    }
+
+    .glow {
+      inset-block-start: -170px;
+      height: 1200px;
+      background: radial-gradient(
+        ellipse 820px 760px at 160px 330px,
+        var(--hero-glow),
+        color-mix(in srgb, var(--hero-glow) 45%, transparent) 45%,
+        transparent
+      );
+    }
+
+    .layout {
+      grid-template-columns: minmax(0, 1fr) 525px;
+      align-items: start;
+    }
+
+    .copy {
+      padding-top: 55px;
+    }
+
+    .layout > :global(.phones) {
+      justify-self: start;
+      margin-top: 0;
+    }
+  }
+</style>

@@ -1,0 +1,207 @@
+---
+import { Picture } from 'astro:assets';
+import homeDark from '../assets/app/home-dark.png';
+import homeLight from '../assets/app/home-light.png';
+import runningSession from '../assets/app/running-session.png';
+import PhoneFrame from './PhoneFrame.astro';
+
+type TrainingType = 'intervals' | 'running' | 'strength';
+
+const pedestalBars: { x: number; height: number; type: TrainingType }[] = [
+  { x: -0.99, height: 0.28, type: 'intervals' },
+  { x: -0.94, height: 0.13, type: 'intervals' },
+  { x: -0.85, height: 0.24, type: 'strength' },
+  { x: -0.73, height: 0.21, type: 'strength' },
+  { x: -0.58, height: 0.08, type: 'strength' },
+  { x: -0.41, height: 0.21, type: 'strength' },
+  { x: -0.21, height: 0.25, type: 'running' },
+  { x: -0.01, height: 0.16, type: 'running' },
+  { x: 0.2, height: 0.14, type: 'running' },
+  { x: 0.39, height: 0.24, type: 'running' },
+  { x: 0.56, height: 0.21, type: 'intervals' },
+  { x: 0.72, height: 0.08, type: 'intervals' },
+  { x: 0.84, height: 0.2, type: 'intervals' },
+  { x: 0.93, height: 0.24, type: 'intervals' },
+  { x: 0.98, height: 0.14, type: 'strength' },
+];
+
+const toPercent = (fraction: number) => `${(fraction * 100).toFixed(2)}%`;
+
+const bars = pedestalBars.map(({ x, height, type }) => ({
+  type,
+  style: {
+    '--left': toPercent((1 + x) / 2),
+    '--bottom': toPercent((1 - Math.sqrt(1 - x ** 2)) / 2),
+    '--height': toPercent(height),
+  },
+}));
+
+const screenFormats = {
+  formats: ['avif' as const],
+  fallbackFormat: 'webp' as const,
+};
+const homeSizes = '(min-width: 640px) 294px, 248px';
+const homeAlt = 'Inicio de PULSE con la rutina que toca hoy';
+---
+
+<div class="phones">
+  <div class="pedestal" aria-hidden="true">
+    {bars.map(({ type, style }) => (
+      <span class:list={['bar', type]} {style} />
+    ))}
+  </div>
+  <PhoneFrame class="running-phone">
+    <Picture
+      src={runningSession}
+      alt="Sesión de running con GPS en PULSE"
+      widths={[280, 560, 780]}
+      sizes="273px"
+      loading="lazy"
+      {...screenFormats}
+    />
+  </PhoneFrame>
+  <PhoneFrame class="home-phone">
+    <Picture
+      src={homeLight}
+      alt={homeAlt}
+      widths={[250, 300, 600, 780]}
+      sizes={homeSizes}
+      loading="lazy"
+      fetchpriority="high"
+      pictureAttributes={{ class: 'home-light' }}
+      {...screenFormats}
+    />
+    <Picture
+      src={homeDark}
+      alt={homeAlt}
+      widths={[250, 300, 600, 780]}
+      sizes={homeSizes}
+      loading="lazy"
+      fetchpriority="high"
+      pictureAttributes={{ class: 'home-dark' }}
+      {...screenFormats}
+    />
+  </PhoneFrame>
+</div>
+
+<style>
+  .phones {
+    --pedestal-width: 305px;
+    --pedestal-height: calc(var(--pedestal-width) * 0.62);
+    --bar-scale: 1.3;
+
+    position: relative;
+    display: grid;
+    justify-items: center;
+    padding-bottom: 78px;
+  }
+
+  .phones :global(.home-phone) {
+    --phone-width: 266px;
+
+    position: relative;
+    z-index: 2;
+  }
+
+  .phones :global(.running-phone) {
+    display: none;
+  }
+
+  .home-dark {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .home-light {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .home-dark {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme])) .home-light {
+      display: none;
+    }
+
+    :global(:root:not([data-theme])) .home-dark {
+      display: block;
+    }
+  }
+
+  .pedestal {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: var(--pedestal-width);
+    height: var(--pedestal-height);
+    border: 1px solid transparent;
+    border-bottom-color: var(--pedestal-edge);
+    border-radius: 50%;
+    box-shadow: 0 30px 80px -10px var(--pedestal-glow);
+    translate: -50% 0;
+  }
+
+  .bar {
+    position: absolute;
+    left: var(--left);
+    bottom: var(--bottom);
+    width: max(4px, 1%);
+    height: calc(var(--height) * var(--bar-scale));
+    border-radius: 999px;
+    background: currentColor;
+    box-shadow: 0 0 12px -2px currentColor;
+    /* The bars glow with the bright chart colors in both themes, as in the design. */
+    color-scheme: dark;
+    translate: -50% 0;
+  }
+
+  .intervals {
+    color: var(--intervals-chart);
+  }
+
+  .running {
+    color: var(--running-chart);
+  }
+
+  .strength {
+    color: var(--strength-chart);
+  }
+
+  @media (min-width: 640px) {
+    .phones {
+      --stage: 550px;
+      --pedestal-width: calc(var(--stage) * 0.918);
+      --pedestal-height: calc(var(--pedestal-width) * 0.503);
+      --bar-scale: 1;
+
+      display: block;
+      width: var(--stage);
+      height: calc(var(--stage) * 1.526);
+      padding: 0;
+    }
+
+    .phones :global(.home-phone) {
+      --phone-width: calc(var(--stage) * 0.5745);
+
+      position: absolute;
+      top: calc(var(--stage) * 0.027);
+      left: 0;
+    }
+
+    .phones :global(.running-phone) {
+      --phone-width: calc(var(--stage) * 0.5345);
+
+      position: absolute;
+      top: 0;
+      left: calc(var(--stage) * 0.4655);
+      z-index: 1;
+      display: block;
+    }
+
+    .pedestal {
+      left: calc(var(--stage) * 0.0073);
+      translate: none;
+    }
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const stores = ['App Store', 'Google Play'];
+---
+
+<ul class:list={['stores', className]}>
+  {stores.map((store) => (
+    <li class="badge">
+      <span class="soon">Próximamente en</span>
+      <span class="store">{store}</span>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .stores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .badge {
+    display: grid;
+    align-content: center;
+    min-height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--store-badge-border);
+    border-radius: 9px;
+    background: #000;
+    color: #fff;
+  }
+
+  .soon {
+    font-size: 10px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .store {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  @media (min-width: 640px) {
+    .badge {
+      min-height: 54px;
+      padding: 0 18px;
+      border-radius: 10px;
+    }
+
+    .soon {
+      font-size: 11px;
+    }
+
+    .store {
+      font-size: 20px;
+    }
+  }
+</style>

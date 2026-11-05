@@ -91,6 +91,18 @@
   --header-scrolled-blur: blur(24px) saturate(160%);
   --footer-text: light-dark(#5a6678, rgba(255, 255, 255, 0.56));
 
+  --hero-glow: light-dark(rgba(36, 87, 255, 0.14), rgba(36, 87, 255, 0.48));
+  --hero-accent: linear-gradient(90deg, #6b8dfe, #2457ff 62%);
+  --eyebrow-dot: #5b80ff;
+  --chip: light-dark(#ffffff, rgba(255, 255, 255, 0.07));
+  --store-badge-border: rgba(255, 255, 255, 0.32);
+  --phone-bezel: #0b0f19;
+  --phone-edge: rgba(255, 255, 255, 0.16);
+  --phone-shadow: 0 40px 70px -30px
+    light-dark(rgba(14, 23, 38, 0.45), rgba(0, 0, 0, 0.9));
+  --pedestal-edge: light-dark(rgba(36, 87, 255, 0.14), rgba(91, 128, 255, 0.4));
+  --pedestal-glow: light-dark(rgba(36, 87, 255, 0.22), rgba(36, 87, 255, 0.55));
+
   --font-text:
     -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui,
     sans-serif;
