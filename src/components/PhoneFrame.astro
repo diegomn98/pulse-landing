@@ -14,11 +14,12 @@ const { class: className } = Astro.props;
 
 <style>
   .phone {
-    --bezel: calc(var(--phone-width) * 0.032);
+    --bezel: calc(var(--phone-width) * 0.0255);
     --radius: calc(var(--phone-width) * 0.155);
 
     width: var(--phone-width);
-    padding: var(--bezel);
+    padding: calc(var(--phone-width) * 0.032) var(--bezel)
+      calc(var(--phone-width) * 0.029);
     border: 1px solid var(--phone-edge);
     border-radius: var(--radius);
     background: var(--phone-bezel);
@@ -28,12 +29,24 @@ const { class: className } = Astro.props;
   .screen {
     position: relative;
     overflow: hidden;
+    padding-bottom: calc(var(--phone-width) * 0.028);
     border-radius: calc(var(--radius) - var(--bezel));
+    background: var(--phone-chin);
+  }
+
+  .screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--phone-reflection);
+    pointer-events: none;
   }
 
   .screen::after {
     content: '';
     position: absolute;
+    z-index: 2;
     top: calc(var(--phone-width) * 0.032);
     left: 50%;
     width: 31%;
