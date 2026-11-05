@@ -1,0 +1,75 @@
+---
+import Logo from './Logo.astro';
+
+const legalPages = [
+  { href: '/privacidad', label: 'Privacidad' },
+  { href: '/terminos', label: 'Términos' },
+  { href: '/cookies', label: 'Cookies' },
+];
+---
+
+<footer class="footer page-width">
+  <Logo class="footer-logo" />
+  <ul class="links">
+    {legalPages.map(({ href, label }) => (
+      <li>
+        <a href={href}>{label}</a>
+      </li>
+    ))}
+  </ul>
+  <p class="copyright">© 2026 PULSE</p>
+</footer>
+
+<style>
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 20px 0 30px;
+    border-top: 1px solid var(--line);
+    color: var(--footer-text);
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .footer-logo {
+    font-size: 21px;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 22px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .links a {
+    display: inline-grid;
+    align-items: center;
+    min-height: 44px;
+    text-decoration: none;
+  }
+
+  .links a:hover {
+    color: var(--ink);
+  }
+
+  .copyright {
+    padding-top: 10px;
+  }
+
+  @media (min-width: 960px) {
+    .footer {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0 28px;
+    }
+
+    .copyright {
+      padding-top: 0;
+    }
+  }
+</style>

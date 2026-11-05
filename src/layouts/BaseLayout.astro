@@ -1,0 +1,45 @@
+---
+import { Font } from 'astro:assets';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { THEME_STORAGE_KEY } from '../scripts/theme';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>{title}</title>
+    <script is:inline define:vars={{ storageKey: THEME_STORAGE_KEY }}>
+      let storedTheme = null;
+      try {
+        storedTheme = localStorage.getItem(storageKey);
+      } catch {}
+      const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.dataset.theme =
+        storedTheme === 'light' || storedTheme === 'dark'
+          ? storedTheme
+          : prefersDark
+            ? 'dark'
+            : 'light';
+    </script>
+    <Font cssVariable="--font-display" preload />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

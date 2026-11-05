@@ -1,0 +1,73 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<a href="/" class:list={['logo', className]} {...rest}>
+  <span class="lockup">
+    <span class="mark" aria-hidden="true">
+      <span class="bar side-bar short"></span>
+      <span class="bar main-bar"></span>
+      <span class="bar side-bar medium"></span>
+    </span>
+    <span class="word">pulse</span>
+  </span>
+</a>
+
+<style>
+  .logo {
+    display: inline-grid;
+    align-items: center;
+    min-height: 44px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .lockup {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3em;
+  }
+
+  .mark {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.13em;
+    height: 0.96em;
+    /* The bars rest on the optical baseline of the word, slightly below its box baseline. */
+    position: relative;
+    top: 0.08em;
+  }
+
+  .bar {
+    width: 0.26em;
+    border-radius: 999px;
+  }
+
+  .main-bar {
+    height: 100%;
+    background: var(--intervals-chart);
+  }
+
+  .side-bar {
+    background: var(--logo-bar);
+  }
+
+  .short {
+    height: 58%;
+  }
+
+  .medium {
+    height: 76%;
+  }
+
+  .word {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+</style>

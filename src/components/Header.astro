@@ -1,0 +1,167 @@
+---
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+const sections = [
+  { href: '#tipos', label: 'Los tres tipos' },
+  { href: '#como-funciona', label: 'Cómo funciona' },
+  { href: '#ejercicios', label: 'Ejercicios' },
+  { href: '#preguntas', label: 'Preguntas' },
+];
+---
+
+<header class="header page-width">
+  <Logo class="header-logo" />
+  <nav class="sections">
+    <ul>
+      {sections.map(({ href, label }) => (
+        <li>
+          <a href={href}>{label}</a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+  <div class="actions">
+    <ThemeToggle />
+    <a class="join" href="#apuntate">
+      Apúntate
+    </a>
+  </div>
+</header>
+
+<style>
+  :global(html) {
+    scroll-padding-top: 102px;
+  }
+
+  .header {
+    position: sticky;
+    top: 12px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 78px;
+    margin-top: 12px;
+    padding: 0 14px;
+    border: 1px solid var(--header-border);
+    border-radius: 24px;
+    background: var(--header-bg);
+    isolation: isolate;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+      linear-gradient(var(--header-bg), var(--header-bg)),
+      var(--header-scrolled-bg);
+    backdrop-filter: var(--header-scrolled-blur);
+    opacity: 0;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .header::before {
+      animation-name: reveal-header-backdrop;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      animation-timeline: scroll(root);
+      /* Tied to scroll, not time: a zero duration from the reduced-motion reset would pin it visible. */
+      animation-duration: auto !important;
+      animation-range: 0 1px;
+    }
+  }
+
+  @supports not (animation-timeline: scroll()) {
+    .header::before {
+      opacity: 1;
+    }
+  }
+
+  @keyframes reveal-header-backdrop {
+    to {
+      opacity: 1;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .header::before {
+      background:
+        linear-gradient(var(--header-bg), var(--header-bg)), var(--bg);
+      backdrop-filter: none;
+    }
+  }
+
+  .header-logo {
+    font-size: 23px;
+  }
+
+  .sections {
+    display: none;
+  }
+
+  .sections ul {
+    display: flex;
+    gap: 34px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sections a {
+    display: inline-grid;
+    align-items: center;
+    min-height: 44px;
+    color: var(--nav-link);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .sections a:hover {
+    color: var(--ink);
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .join {
+    display: inline-grid;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: var(--ink-inverse);
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  @media (min-width: 960px) {
+    :global(html) {
+      scroll-padding-top: 134px;
+    }
+
+    .header {
+      top: 18px;
+      min-height: 98px;
+      margin-top: 18px;
+      padding: 0 22px;
+    }
+
+    .header-logo {
+      font-size: 27px;
+    }
+
+    .sections {
+      display: block;
+    }
+  }
+</style>
