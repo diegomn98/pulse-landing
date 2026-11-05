@@ -16,6 +16,7 @@ Contenido, comportamiento y conexión con la lista de espera de la landing. El a
 | `/privacidad` | Política de privacidad |
 | `/terminos` | Términos y condiciones |
 | `/cookies` | Política de cookies |
+| `/baja` | Baja de la lista de espera desde el enlace del correo (sección 7) |
 | `/404` | Página no encontrada (no diseñada: misma cabecera y pie, título y enlace a la portada) |
 
 Las páginas legales tienen huecos entre [CORCHETES] pendientes de revisión. Sus textos se toman de la versión web del diseño (`../pulse-imagenes/02-web/25-cookies-y-textos-legales-*`), con la cabecera y el pie de la landing.
@@ -136,14 +137,33 @@ El backend vive en `pulse-supabase`: tabla `marketing.waitlist`, funciones `join
 | Sin conexión o tiempo agotado | Error de envío |
 
 - La llamada vive detrás de una función propia, para poder probar el formulario sin backend.
-- El enlace de baja del correo apunta a la función `unsubscribe`, no a la landing.
+- El enlace de baja del correo apunta a la página `/baja` de la landing (sección 7), que es la que llama a la función `unsubscribe`.
 
-## 7. Analítica y cookies
+## 7. Página de baja · `/baja`
+
+El enlace «Darme de baja» del correo lleva a `/baja?token=<unsubscribe_token>`. No está diseñada: usa la misma cabecera y pie que la landing, con un título y un texto según el estado.
+
+- Lee el parámetro `token` de la URL. Es un UUID; se aceptan espacios alrededor y mayúsculas, como en la función.
+- No da de baja al cargar: la baja solo se envía al pulsar el botón, para que los escáneres de enlaces de los correos no den de baja a nadie.
+
+| Estado | Cuándo | Qué se ve |
+|---|---|---|
+| Inicial | Token con formato válido | «¿Quieres darte de baja?» · «Dejarás de recibir los correos de PULSE sobre el lanzamiento.» · botón «Darme de baja» |
+| Enviando | Tras pulsar el botón | Botón desactivado con `aria-busy="true"`, sin texto nuevo |
+| Hecho | `200 { ok: true }` | «Te has dado de baja» · «Ya no recibirás más correos de PULSE.» · enlace «Volver a PULSE» a `/` |
+| Enlace no válido | Sin token, con formato incorrecto o `400 invalid_input` | «Este enlace no es válido» · «Si quieres darte de baja, usa el enlace del último correo que te enviamos.» |
+| Error | Cualquier otra respuesta, sin conexión o tiempo agotado | «No hemos podido darte de baja» · «Inténtalo de nuevo en unos minutos.» |
+
+- Envía `POST` a la función `unsubscribe`, con la clave publicable en la cabecera `apikey` y el cuerpo `{ token }`.
+- La respuesta es la misma si el token existe, si no existe o si ya estaba dado de baja, así que la página siempre muestra «Hecho» ante un `200`: no revela si el email estaba en la lista.
+- Como en el formulario, la llamada vive detrás de una función propia para poder probar la página sin backend.
+
+## 8. Analítica y cookies
 
 - Sin analítica de momento. El tema guardado en el navegador es una preferencia necesaria.
 - Si se aprueba una analítica con cookies, se implementan el aviso y las preferencias de las capturas: «Necesarias» (siempre activas) y «Analítica», con «Rechazar todo» y «Guardar preferencias», y el enlace «Configurar cookies» del pie.
 
-## 8. Decisiones abiertas
+## 9. Decisiones abiertas
 
 - Confirmación del email antes de dar de alta (doble opt-in) o alta directa con bienvenida, como en el diseño (se decide en `pulse-supabase`).
 - Analítica: ninguna, una sin cookies o una con aviso.
@@ -152,3 +172,5 @@ El backend vive en `pulse-supabase`: tabla `marketing.waitlist`, funciones `join
 - Dirección de «Contacto».
 - Datos del responsable y revisión de los textos legales.
 - Texto del error de envío.
+- Variable de entorno con la URL de la función `unsubscribe`.
+- Si la página de baja se excluye del sitemap y de los buscadores.
