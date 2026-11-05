@@ -92,12 +92,16 @@ Valores medidos en las capturas de `03-landing`.
 | `store-badge-border` borde de las insignias de tienda (fondo `#000`) | `rgba(255, 255, 255, .32)` | igual |
 | `phone-bezel` marco de los móviles | `#0b0f19` | igual |
 | `phone-edge` filo del marco | `rgba(255, 255, 255, .16)` | igual |
+| `phone-chin` franja bajo la pantalla | `#06080d` | igual |
+| `phone-reflection` reflejo sobre la pantalla | ninguno | `linear-gradient(90deg, transparent, rgba(255, 255, 255, .13) 22%, transparent 45%)` |
 | `phone-shadow` | `0 40px 70px -30px rgba(14, 23, 38, .45)` | `0 40px 70px -30px rgba(0, 0, 0, .9)` |
 | `pedestal-edge` arco inferior del pedestal | `rgba(36, 87, 255, .14)` | `rgba(91, 128, 255, .4)` |
 | `pedestal-glow` | `rgba(36, 87, 255, .22)` | `rgba(36, 87, 255, .55)` |
 
 - Etiqueta, campo de email y botones de plataforma marcados usan `pill`, `input-border` e `ink`/`ink-inverse`. El campo y el botón «Apuntarme» miden 58 px de alto, en píldora; el botón lleva el gradiente y la sombra de intervalos.
 - Título en Figtree 800: 52 px en móvil y 96 px en escritorio, interlineado .96 y `letter-spacing: -.045em`. Texto: 17/26 px en móvil y 20/31 px desde 640 px, en `nav-link`.
+- Marco del móvil, en proporción a su ancho (316 px en escritorio): bisel de 10 px arriba, 8 px a los lados y 9 px abajo, más 1 px de filo; debajo de la pantalla, una franja `phone-chin` de 9 px; radio exterior del 15,5 % y la isla al 31 % del ancho de la pantalla.
+- El reflejo de la pantalla es una banda vertical en el lado izquierdo, igual en toda la altura y en los dos móviles, solo en oscuro.
 - Las barras del pedestal usan los colores de gráficos del tema oscuro en los dos temas, como en las capturas.
 
 ## Tema

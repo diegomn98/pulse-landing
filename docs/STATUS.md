@@ -54,7 +54,9 @@ Notas del hero:
 - Botones de plataforma a 36 px de alto como en la captura, con el área táctil ampliada a 44 px sin cambiar su aspecto. El enlace «Privacidad» de la nota es un enlace dentro de texto.
 - El texto de ejemplo del campo usa `sub` y no el gris más claro de la captura, para tener contraste AA.
 - Sin lógica todavía: el formulario usa la validación nativa del navegador y los botones de plataforma no cambian. Fase 3.
-- Diferencias que quedan con las capturas: el texto usa la fuente del sistema (los cortes de línea del párrafo cambian según el sistema); el marco del móvil es unos 13 px más bajo (la captura tiene el borde inferior más grueso); el brillo violeta de la derecha pertenece a «Una sola app» y llega con esa sección; el reflejo diagonal de los móviles en oscuro no se ha reproducido.
+- Marco del móvil con la franja inferior y el reflejo en oscuro medidos en las capturas (`docs/BRAND.md` › Hero de la landing). El reflejo es una banda vertical, no diagonal.
+- Diferencias que quedan con las capturas (aceptadas): el texto usa la fuente del sistema (los cortes de línea del párrafo cambian según el sistema); el brillo violeta de la derecha pertenece a «Una sola app» y llega con esa sección; el texto de ejemplo del campo es más oscuro por contraste; los botones de plataforma amplían su área táctil sin cambiar su aspecto.
+- Textos alternativos de las pantallas aprobados. El LCP de las pantallas en diferido se mide en la fase 6.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.
