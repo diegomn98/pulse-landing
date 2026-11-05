@@ -65,11 +65,11 @@ Repositorios hermanos: `pulse-web` (app web) y `pulse-supabase` (backend común:
 
 - Objetivo: Lighthouse móvil de 95 o más en rendimiento, accesibilidad, buenas prácticas y SEO. LCP por debajo de 2 s y CLS por debajo de 0,05.
 - La imagen principal se carga con prioridad; el resto, en diferido.
-- `lang="es"`, título y descripción a partir de los textos del hero, etiquetas Open Graph, URL canónica, `robots.txt`, sitemap y favicon a partir del icono Cobalto. La imagen Open Graph y el dominio están pendientes de decidir.
+- `lang="es"`, título y descripción a partir de los textos del hero, etiquetas Open Graph, URL canónica, `robots.txt`, sitemap y favicon a partir del icono Cobalto. `/baja` queda fuera del sitemap y con `noindex`. La imagen Open Graph y el dominio están pendientes de decidir.
 
 ## Backend y entornos
 
-- La landing solo llama a la función `join-waitlist`, cuya URL va en la variable de entorno `PUBLIC_WAITLIST_ENDPOINT`. Nunca accede a la base de datos. La única clave que puede contener es la publicable (`sb_publishable_…`), en `PUBLIC_SUPABASE_PUBLISHABLE_KEY`; nunca claves secretas.
+- La landing solo llama a las funciones `join-waitlist` (formulario) y `unsubscribe` (página `/baja`). La dirección base de las Edge Functions va en la variable de entorno `PUBLIC_FUNCTIONS_URL`, y las llamadas usan `${PUBLIC_FUNCTIONS_URL}/join-waitlist` y `${PUBLIC_FUNCTIONS_URL}/unsubscribe`. Nunca accede a la base de datos. La única clave que puede contener es la publicable (`sb_publishable_…`), en `PUBLIC_SUPABASE_PUBLISHABLE_KEY`; nunca claves secretas.
 - En desarrollo apunta a las funciones servidas en local desde `pulse-supabase`. No inventes URLs ni credenciales: si falta una, pregunta.
 - Nunca ejecutes despliegues ni cambios en producción sin autorización explícita.
 - La cookie o el almacenamiento del tema son necesarios. El aviso de cookies y «Configurar cookies» solo se implementan si se aprueba alguna analítica u otra cookie no necesaria.

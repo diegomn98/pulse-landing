@@ -123,7 +123,7 @@ Hay dos instancias (hero y cierre) con el mismo comportamiento y el mismo estado
 
 El backend vive en `pulse-supabase`: tabla `marketing.waitlist`, funciones `join-waitlist` y `unsubscribe`, y el correo «Ya estás en la lista». Su contrato completo está en `../pulse-supabase/docs/ARCHITECTURE.md`. Aquí solo se describe lo que hace la landing.
 
-- Envía `POST` a `PUBLIC_WAITLIST_ENDPOINT`, con la clave publicable en la cabecera `apikey`, y el cuerpo `{ email, platforms, source, website }`:
+- Envía `POST` a `${PUBLIC_FUNCTIONS_URL}/join-waitlist`, con la clave publicable en la cabecera `apikey`, y el cuerpo `{ email, platforms, source, website }`:
   - `platforms`: los valores `ios`, `android` y `web` marcados.
   - `source`: `hero` o `footer`, según el formulario.
   - `website`: el campo trampa, vacío salvo que lo rellene un bot.
@@ -152,11 +152,12 @@ El enlace «Darme de baja» del correo lleva a `/baja?token=<unsubscribe_token>`
 | Enviando | Tras pulsar el botón | Botón desactivado con `aria-busy="true"`, sin texto nuevo |
 | Hecho | `200 { ok: true }` | «Te has dado de baja» · «Ya no recibirás más correos de PULSE.» · enlace «Volver a PULSE» a `/` |
 | Enlace no válido | Sin token, con formato incorrecto o `400 invalid_input` | «Este enlace no es válido» · «Si quieres darte de baja, usa el enlace del último correo que te enviamos.» |
-| Error | Cualquier otra respuesta, sin conexión o tiempo agotado | «No hemos podido darte de baja» · «Inténtalo de nuevo en unos minutos.» |
+| Error | Cualquier otra respuesta, sin conexión o tiempo agotado | «No hemos podido darte de baja» · «Inténtalo de nuevo en unos minutos.» · el botón «Darme de baja» sigue visible para reintentar |
 
-- Envía `POST` a la función `unsubscribe`, con la clave publicable en la cabecera `apikey` y el cuerpo `{ token }`.
+- Envía `POST` a `${PUBLIC_FUNCTIONS_URL}/unsubscribe`, con la clave publicable en la cabecera `apikey` y el cuerpo `{ token }`.
 - La respuesta es la misma si el token existe, si no existe o si ya estaba dado de baja, así que la página siempre muestra «Hecho» ante un `200`: no revela si el email estaba en la lista.
 - Como en el formulario, la llamada vive detrás de una función propia para poder probar la página sin backend.
+- Queda fuera del sitemap y lleva `<meta name="robots" content="noindex">`.
 
 ## 8. Analítica y cookies
 
@@ -172,5 +173,3 @@ El enlace «Darme de baja» del correo lleva a `/baja?token=<unsubscribe_token>`
 - Dirección de «Contacto».
 - Datos del responsable y revisión de los textos legales.
 - Texto del error de envío.
-- Variable de entorno con la URL de la función `unsubscribe`.
-- Si la página de baja se excluye del sitemap y de los buscadores.

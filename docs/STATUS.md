@@ -33,13 +33,13 @@ Cada fase se hace en bloques pequeños, con su commit y con este archivo actuali
 
 ### Fase 4 · Conexión con la lista de espera
 - [ ] Función `join-waitlist` disponible en local desde `pulse-supabase` (se hace allí, en su fase 1).
-- [ ] Formulario conectado a `PUBLIC_WAITLIST_ENDPOINT` con todas las respuestas del contrato.
+- [ ] Formulario conectado a `${PUBLIC_FUNCTIONS_URL}/join-waitlist` con todas las respuestas del contrato.
 - [ ] E2E del alta contra las funciones en local.
 
 ### Fase 5 · Páginas y SEO
 - [ ] Privacidad, términos y cookies con los huecos [CORCHETES].
 - [ ] 404.
-- [ ] Página `/baja`: lee el token de la URL, da de baja solo al pulsar el botón y muestra los estados inicial, enviando, hecho, enlace no válido y error, conectada a la función `unsubscribe`.
+- [ ] Página `/baja`: lee el token de la URL, da de baja solo al pulsar el botón y muestra los estados inicial, enviando, hecho, enlace no válido y error (con el botón visible para reintentar), conectada a `${PUBLIC_FUNCTIONS_URL}/unsubscribe`, fuera del sitemap y con `noindex`.
 - [ ] Metadatos, Open Graph, URL canónica, `robots.txt`, sitemap y favicon.
 
 ### Fase 6 · Calidad y publicación
@@ -56,12 +56,10 @@ Cada fase se hace en bloques pequeños, con su commit y con este archivo actuali
 - Dirección de «Contacto».
 - Responsable y revisión de los textos legales.
 - Texto del error de envío.
-- Variable de entorno con la URL de la función `unsubscribe`.
-- Si la página de baja se excluye del sitemap y de los buscadores.
 
 ## Contradicciones detectadas
 
-- `CLAUDE.md` › Backend y entornos dice que la landing solo llama a `join-waitlist` y solo prevé `PUBLIC_WAITLIST_ENDPOINT`, pero `docs/LANDING_SPEC.md` › Página de baja (y la decisión 0006 de `pulse-supabase`) hace que `/baja` llame también a `unsubscribe`. Pendiente de confirmar y de actualizar `CLAUDE.md` con la variable de la nueva URL.
+Ninguna abierta.
 
 ## Riesgos
 
