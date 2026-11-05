@@ -16,7 +16,7 @@ Notas de la puesta en marcha:
 - TypeScript 6 y no 7: `@astrojs/check` solo admite TypeScript 5 o 6. Subir a 7 cuando lo admita.
 - `typescript-eslint` añadido con autorización: el plugin de Astro lo necesita para leer TypeScript.
 - Vitest busca `src/**/*.test.ts` y pasa sin tests (`passWithNoTests`); quitarlo al añadir los primeros tests en la fase 3.
-- Playwright: 8 proyectos (Chromium y WebKit a 375, 390, 834 y 1440) contra `astro build` + `astro preview`. Sin ajustes de CI hasta que exista una (necesitarían `@types/node`).
+- Playwright: 8 proyectos (Chromium y WebKit a 375, 390, 834 y 1440) contra `astro build` + `astro preview` en el puerto 4322, sin reutilizar un servidor existente (el 4321 queda para `npm run dev`). Sin ajustes de CI hasta que exista una (necesitarían `@types/node`).
 - `docs/` queda fuera de Prettier para no reformatear la documentación.
 
 ### Fase 1 · Base visual

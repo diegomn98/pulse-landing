@@ -106,5 +106,5 @@ Si alguno todavía no existe, se crea tal como se describe aquí durante la pues
 - `npm run lint`: ESLint sobre `src/` y `e2e/`.
 - `npm run format`: Prettier sobre todo el proyecto.
 - `npm test`: Vitest, una sola ejecución.
-- `npm run e2e`: Playwright (Chromium y WebKit a 375, 390, 834 y 1440 px) contra el build.
+- `npm run e2e`: Playwright (Chromium y WebKit a 375, 390, 834 y 1440 px) contra el build, servido en el puerto 4322. Nunca reutiliza un servidor ya arrancado: si el puerto está ocupado, falla.
 - `npm run check`: `astro check` + lint + test + build. Debe pasar antes de cada commit.

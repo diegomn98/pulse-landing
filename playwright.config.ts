@@ -1,5 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const previewUrl = 'http://localhost:4322';
+
 const viewports = [
   { width: 375, height: 812 },
   { width: 390, height: 844 },
@@ -16,7 +18,7 @@ export default defineConfig({
   testDir: 'e2e',
   fullyParallel: true,
   use: {
-    baseURL: 'http://localhost:4321',
+    baseURL: previewUrl,
   },
   projects: browsers.flatMap(({ name, device }) =>
     viewports.map((viewport) => ({
@@ -25,8 +27,8 @@ export default defineConfig({
     })),
   ),
   webServer: {
-    command: 'npm run build && npm run preview',
-    url: 'http://localhost:4321',
-    reuseExistingServer: true,
+    command: 'npm run build && npm run preview -- --port 4322',
+    url: previewUrl,
+    reuseExistingServer: false,
   },
 });
