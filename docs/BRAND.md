@@ -79,6 +79,27 @@ Valores medidos en las capturas de `03-landing`.
 - Cabecera fija al hacer scroll. En cuanto la página baja, debajo del fondo y el borde de la captura aparece una capa con `header-scrolled-bg` (el color `bg` al 85 %) y `backdrop-filter: blur(24px) saturate(160%)`, para que el contenido que pasa por debajo no se mezcle con los enlaces. Con `prefers-reduced-transparency: reduce`, esa capa usa `bg` opaco y sin desenfoque.
 - Logotipo: «pulse» a 27 px en la cabecera de escritorio, 23 px en la de móvil y 21 px en el pie.
 
+## Hero de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `hero-glow` brillo azul de arriba a la izquierda | `rgba(36, 87, 255, .14)` | `rgba(36, 87, 255, .48)` |
+| `hero-accent` gradiente de «ritmo.» | `linear-gradient(90deg, #6b8dfe, #2457ff 62%)` | igual |
+| `eyebrow-dot` punto de la etiqueta | `#5b80ff` | igual |
+| `chip` botones de plataforma sin marcar | `#ffffff` | `rgba(255, 255, 255, .07)` |
+| `store-badge-border` borde de las insignias de tienda (fondo `#000`) | `rgba(255, 255, 255, .32)` | igual |
+| `phone-bezel` marco de los móviles | `#0b0f19` | igual |
+| `phone-edge` filo del marco | `rgba(255, 255, 255, .16)` | igual |
+| `phone-shadow` | `0 40px 70px -30px rgba(14, 23, 38, .45)` | `0 40px 70px -30px rgba(0, 0, 0, .9)` |
+| `pedestal-edge` arco inferior del pedestal | `rgba(36, 87, 255, .14)` | `rgba(91, 128, 255, .4)` |
+| `pedestal-glow` | `rgba(36, 87, 255, .22)` | `rgba(36, 87, 255, .55)` |
+
+- Etiqueta, campo de email y botones de plataforma marcados usan `pill`, `input-border` e `ink`/`ink-inverse`. El campo y el botón «Apuntarme» miden 58 px de alto, en píldora; el botón lleva el gradiente y la sombra de intervalos.
+- Título en Figtree 800: 52 px en móvil y 96 px en escritorio, interlineado .96 y `letter-spacing: -.045em`. Texto: 17/26 px en móvil y 20/31 px desde 640 px, en `nav-link`.
+- Las barras del pedestal usan los colores de gráficos del tema oscuro en los dos temas, como en las capturas.
+
 ## Tema
 
 - Tres opciones: automático (sigue `prefers-color-scheme`), claro y oscuro.

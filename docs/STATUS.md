@@ -1,6 +1,6 @@
 # Estado
 
-Fases 0 y 1 terminadas. La portada solo tiene cabecera, pie y el título del hero hasta la fase 2.
+Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero y pie.
 
 ## Plan por fases
 
@@ -36,7 +36,7 @@ Notas de la base visual:
 - «Apúntate» enlaza a `#apuntate`, que tendrá el formulario del hero en la fase 2. Los enlaces de sección apuntan a anclas que se crean en la fase 2 y los del pie a páginas de la fase 5.
 
 ### Fase 2 · Secciones
-- [ ] Hero (con el formulario solo maquetado).
+- [x] Hero (con el formulario solo maquetado).
 - [ ] Una sola app.
 - [ ] Cómo funciona.
 - [ ] Ejercicios.
@@ -44,7 +44,17 @@ Notas de la base visual:
 - [ ] Plataformas.
 - [ ] Preguntas.
 - [ ] Cierre y pie.
-- [ ] Capturas de la app optimizadas en `src/assets` y marcos de móvil.
+- [ ] Capturas de la app optimizadas en `src/assets` y marcos de móvil (hechas las del hero: Inicio claro y oscuro, y sesión de running).
+
+Notas del hero:
+- Componentes: `Hero`, `WaitlistForm` (se reutilizará en el cierre), `StoreBadges` (también para Plataformas), `PhoneFrame` y `HeroPhones` (móviles y pedestal de barras). Valores nuevos en `docs/BRAND.md` › Hero de la landing.
+- El móvil de Inicio cambia de pantalla con el tema (clara u oscura), como en las capturas (aprobado). Solo se descarga la del tema activo.
+- Dos columnas desde 1100 px; por debajo, apilado. En móvil (<640 px) solo se ve el móvil de Inicio, como en la captura; desde 640 px, los dos. No hay captura a 834.
+- Pantallas de los móviles en AVIF con WebP de respaldo y tamaños explícitos. Van en diferido con `fetchpriority="high"` y no con prioridad, porque la pantalla depende del tema y precargarla obligaría a bajar las dos. Revisar el LCP en la fase 6.
+- Botones de plataforma a 36 px de alto como en la captura, con el área táctil ampliada a 44 px sin cambiar su aspecto. El enlace «Privacidad» de la nota es un enlace dentro de texto.
+- El texto de ejemplo del campo usa `sub` y no el gris más claro de la captura, para tener contraste AA.
+- Sin lógica todavía: el formulario usa la validación nativa del navegador y los botones de plataforma no cambian. Fase 3.
+- Diferencias que quedan con las capturas: el texto usa la fuente del sistema (los cortes de línea del párrafo cambian según el sistema); el marco del móvil es unos 13 px más bajo (la captura tiene el borde inferior más grueso); el brillo violeta de la derecha pertenece a «Una sola app» y llega con esa sección; el reflejo diagonal de los móviles en oscuro no se ha reproducido.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.
