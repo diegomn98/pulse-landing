@@ -72,6 +72,7 @@ Repositorios hermanos: `pulse-web` (app web) y `pulse-supabase` (backend común:
 - La landing solo llama a las funciones `join-waitlist` (formulario) y `unsubscribe` (página `/baja`). La dirección base de las Edge Functions va en la variable de entorno `PUBLIC_FUNCTIONS_URL`, y las llamadas usan `${PUBLIC_FUNCTIONS_URL}/join-waitlist` y `${PUBLIC_FUNCTIONS_URL}/unsubscribe`. Nunca accede a la base de datos. La única clave que puede contener es la publicable (`sb_publishable_…`), en `PUBLIC_SUPABASE_PUBLISHABLE_KEY`; nunca claves secretas.
 - En desarrollo apunta a las funciones servidas en local desde `pulse-supabase`. No inventes URLs ni credenciales: si falta una, pregunta.
 - Nunca ejecutes despliegues ni cambios en producción sin autorización explícita.
+- No detengas procesos ni servidores que no hayas arrancado tú en la tarea; si un puerto está ocupado, usa otro.
 - La cookie o el almacenamiento del tema son necesarios. El aviso de cookies y «Configurar cookies» solo se implementan si se aprueba alguna analítica u otra cookie no necesaria.
 
 ## Calidad antes de dar algo por terminado
