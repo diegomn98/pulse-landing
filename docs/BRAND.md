@@ -61,6 +61,24 @@ Otros colores con significado:
 | `photo` hueco de foto de ejercicio | `linear-gradient(160deg, #eef1f6, #e2e7ee)` | `linear-gradient(160deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .03))` |
 | `today-ring` día actual en calendario | `inset 0 0 0 1.5px #0e1726` | `inset 0 0 0 1.5px #ffffff` |
 
+## Cabecera y pie de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `nav-link` enlaces de la cabecera | `#33405a` | `rgba(255, 255, 255, .72)` |
+| `logo-bar` barras laterales del logotipo | `#8a94a6` | `rgba(255, 255, 255, .45)` |
+| `header-bg` fondo de la cabecera | `transparent` | `rgba(255, 255, 255, .05)` |
+| `header-border` borde de la cabecera | `transparent` | `rgba(255, 255, 255, .09)` |
+| `header-scrolled-bg` fondo de la cabecera con scroll | `rgba(244, 246, 249, .85)` | `rgba(6, 8, 14, .85)` |
+| `footer-text` enlaces y © del pie | `#5a6678` | `rgba(255, 255, 255, .56)` |
+
+- La barra central del logotipo usa el color de gráficos de intervalos (`#2457ff` en claro, `#5b80ff` en oscuro).
+- Cabecera: radio 24 px; 98 px de alto en escritorio y 78 px en móvil, separada 18 px y 12 px del borde superior. Contenido a 1200 px de ancho máximo con margen lateral de 20 px.
+- Cabecera fija al hacer scroll. En cuanto la página baja, debajo del fondo y el borde de la captura aparece una capa con `header-scrolled-bg` (el color `bg` al 85 %) y `backdrop-filter: blur(24px) saturate(160%)`, para que el contenido que pasa por debajo no se mezcle con los enlaces. Con `prefers-reduced-transparency: reduce`, esa capa usa `bg` opaco y sin desenfoque.
+- Logotipo: «pulse» a 27 px en la cabecera de escritorio, 23 px en la de móvil y 21 px en el pie.
+
 ## Tema
 
 - Tres opciones: automático (sigue `prefers-color-scheme`), claro y oscuro.
@@ -75,7 +93,7 @@ Otros colores con significado:
   - Títulos de pantalla en escritorio: 44–46 px. Títulos grandes de tarjeta: 34–38 px. Secciones: 22–28 px. Títulos de tarjeta: 17–20 px.
   - Texto: 16 px en campos, y 15, 14 y 13 px en contenido y metadatos. 12 px en etiquetas pequeñas.
   - Etiquetas superiores en mayúsculas: 11–13 px, peso 800, con espaciado de letras.
-- Figtree no está todavía en el proyecto. Añadirla (autoalojada) es un recurso nuevo: pide autorización antes.
+- Figtree se autoaloja desde `@fontsource-variable/figtree` (licencia OFL 1.1), solo el subconjunto latino y en su versión variable, con la API de fuentes de Astro. Se usa con `var(--font-display)`.
 
 ## Formas
 

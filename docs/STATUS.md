@@ -1,6 +1,6 @@
 # Estado
 
-Fase 0 terminada. La portada es provisional (solo el título del hero) hasta la fase 1.
+Fases 0 y 1 terminadas. La portada solo tiene cabecera, pie y el título del hero hasta la fase 2.
 
 ## Plan por fases
 
@@ -20,9 +20,20 @@ Notas de la puesta en marcha:
 - `docs/` queda fuera de Prettier para no reformatear la documentación.
 
 ### Fase 1 · Base visual
-- [ ] Figtree (pendiente de autorización).
-- [ ] Tokens de `docs/BRAND.md` como propiedades CSS en claro y oscuro.
-- [ ] Layout con cabecera y pie, y cambio de tema sin destello al cargar.
+- [x] Figtree autoalojada desde `@fontsource-variable/figtree` (autorizada).
+- [x] Tokens de `docs/BRAND.md` como propiedades CSS en claro y oscuro.
+- [x] Layout con cabecera y pie, y cambio de tema sin destello al cargar.
+
+Notas de la base visual:
+- Tema según el ADR 0003. E2E en `e2e/theme.spec.ts` y `e2e/landing.spec.ts`.
+- Figtree con el proveedor `local` de la API de fuentes de Astro: el proveedor `npm` falla en Windows al leer rutas `file://`.
+- Botón de tema, «Apúntate» y enlaces del pie a 44 px de alto (en la captura, 42 px y unos 20 px) por el requisito de targets de 44 px.
+- Enlaces de sección en la cabecera desde 960 px (aprobado); por debajo, como en móvil. No hay captura de la landing a 834.
+- Nombre accesible del botón de tema: «Modo oscuro» con `aria-pressed` (aprobado).
+- La cabecera es fija al hacer scroll, con el fondo y el borde de las capturas. Las anclas dejan sitio debajo de ella con `scroll-padding-top`.
+- Fondo de la cabecera con scroll (decidido): con el fondo de las capturas, el contenido que pasaba por debajo se mezclaba con los enlaces. A partir del primer píxel de scroll aparece el color de la página al 85 % con el desenfoque de `docs/BRAND.md`; con transparencia reducida, fondo opaco sin desenfoque. Solo CSS (animación ligada al scroll que cambia la opacidad); en navegadores sin `animation-timeline` la capa se ve siempre.
+- Diferencias que quedan con las capturas: los brillos azules del fondo (arriba y encima del pie) pertenecen al hero y al cierre y llegan en la fase 2; el texto usa la pila del sistema, que es la correcta; las capturas se generaron con otra fuente y esa diferencia no se corrige.
+- «Apúntate» enlaza a `#apuntate`, que tendrá el formulario del hero en la fase 2. Los enlaces de sección apuntan a anclas que se crean en la fase 2 y los del pie a páginas de la fase 5.
 
 ### Fase 2 · Secciones
 - [ ] Hero (con el formulario solo maquetado).
@@ -61,7 +72,7 @@ Notas de la puesta en marcha:
 - Analítica.
 - Dominio y alojamiento.
 - Imagen Open Graph.
-- Dirección de «Contacto».
+- Dirección de «Contacto»: no aparece en el pie hasta que haya dominio.
 - Responsable y revisión de los textos legales.
 - Texto del error de envío.
 
