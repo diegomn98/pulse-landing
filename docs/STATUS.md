@@ -1,15 +1,23 @@
 # Estado
 
-Proyecto recién creado. Todavía no hay código.
+Fase 0 terminada. La portada es provisional (solo el título del hero) hasta la fase 1.
 
 ## Plan por fases
 
 Cada fase se hace en bloques pequeños, con su commit y con este archivo actualizado al cerrar el bloque.
 
 ### Fase 0 · Puesta en marcha
-- [ ] Proyecto Astro con salida estática y TypeScript strict.
-- [ ] ESLint, Prettier, Vitest y Playwright con los anchos 375, 390, 834 y 1440.
-- [ ] Scripts de `CLAUDE.md` › Comandos y `npm run check` en verde.
+- [x] Proyecto Astro con salida estática y TypeScript strict.
+- [x] ESLint, Prettier, Vitest y Playwright con los anchos 375, 390, 834 y 1440.
+- [x] Scripts de `CLAUDE.md` › Comandos y `npm run check` en verde.
+
+Notas de la puesta en marcha:
+- Astro 7.4, ESLint 10, Prettier 3.9, Vitest 5.1 y Playwright 1.64.
+- TypeScript 6 y no 7: `@astrojs/check` solo admite TypeScript 5 o 6. Subir a 7 cuando lo admita.
+- `typescript-eslint` añadido con autorización: el plugin de Astro lo necesita para leer TypeScript.
+- Vitest busca `src/**/*.test.ts` y pasa sin tests (`passWithNoTests`); quitarlo al añadir los primeros tests en la fase 3.
+- Playwright: 8 proyectos (Chromium y WebKit a 375, 390, 834 y 1440) contra `astro build` + `astro preview`. Sin ajustes de CI hasta que exista una (necesitarían `@types/node`).
+- `docs/` queda fuera de Prettier para no reformatear la documentación.
 
 ### Fase 1 · Base visual
 - [ ] Figtree (pendiente de autorización).
@@ -64,4 +72,5 @@ Ninguna abierta.
 ## Riesgos
 
 - La fase 4 depende de que `pulse-supabase` tenga lista la función `join-waitlist`.
+- `npm audit` avisa de una vulnerabilidad moderada en `minimatch`, que solo usan ESLint y `typescript-eslint` en desarrollo. La única solución que ofrece es bajar a ESLint 9; se revisa cuando publiquen la corrección.
 - Las capturas de la app para los móviles salen del diseño; habrá que sustituirlas por capturas reales cuando exista la app.
