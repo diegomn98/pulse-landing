@@ -6,7 +6,7 @@ interface Props {
 
 const { class: className, size = 'regular' } = Astro.props;
 
-const stores = ['App Store', 'Google Play'];
+const stores = ['App Store', 'Google Play', 'Web'];
 ---
 
 <ul class:list={['stores', size, className]}>
