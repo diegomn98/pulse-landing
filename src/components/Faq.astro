@@ -1,0 +1,91 @@
+---
+interface Question {
+  question: string;
+  answer: string;
+}
+
+const questions: Question[] = [
+  {
+    question: '¿Cuándo sale?',
+    answer:
+      'Estamos terminándola. Si te apuntas, serás de los primeros en enterarte y en probarla.',
+  },
+  {
+    question: '¿En qué dispositivos funcionará?',
+    answer:
+      'En iOS, en Android y en el navegador. Con la misma cuenta tendrás tus rutinas en todos.',
+  },
+  {
+    question: '¿Necesito crear una cuenta?',
+    answer:
+      'No. Puedes empezar a entrenar sin registrarte y crear la cuenta después, si quieres guardar tu progreso.',
+  },
+  {
+    question: '¿Qué haréis con mi email?',
+    answer:
+      'Solo lo usamos para avisarte cuando salga. No lo compartimos y puedes darte de baja cuando quieras.',
+  },
+];
+---
+
+<section id="preguntas" class="faq" aria-labelledby="faq-title">
+  <div class="page-width">
+    <h2 id="faq-title" class="section-title">
+      Preguntas
+    </h2>
+    <ul class="questions">
+      {questions.map(({ question, answer }) => (
+        <li class="card">
+          <h3>{question}</h3>
+          <p>{answer}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .faq {
+    padding-block: 40px 48px;
+  }
+
+  .questions {
+    display: grid;
+    gap: 14px;
+    margin-top: 25px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .card {
+    padding: 20px 22px;
+    border: 1px solid var(--feature-card-border);
+    border-radius: 22px;
+    background: var(--feature-card-bg);
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+  }
+
+  p {
+    margin-top: 6px;
+    color: var(--sub);
+    font-size: 15px;
+    line-height: 22.5px;
+  }
+
+  @media (min-width: 640px) {
+    .questions {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    .faq {
+      padding-block: 68px 72px;
+    }
+  }
+</style>
