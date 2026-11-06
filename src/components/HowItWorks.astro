@@ -1,4 +1,5 @@
 ---
+import PauseButton from './PauseButton.astro';
 import TrainingChart from './TrainingChart.astro';
 import type { TrainingType } from './training-type';
 
@@ -97,7 +98,10 @@ const sessionsDone = 1;
       </ul>
     </div>
 
-    <div class="panel">
+    <div id="how-queue" class="panel">
+      <div class="queue-pause">
+        <PauseButton controls="how-queue" />
+      </div>
       <ol class="queue">
         {queue.map(({ type, position, name, detail, duration }, index) => (
           <li class:list={['routine', type]} style={{ '--position': index }}>
@@ -198,13 +202,27 @@ const sessionsDone = 1;
   }
 
   .panel {
+    --panel-padding: 14px;
+    --pause-bg: var(--queue-pill-bg);
+    --pause-border: var(--queue-pill-border);
+    --pause-color: #fff;
+    --pause-focus: #fff;
+
+    position: relative;
     display: grid;
     gap: 15px;
     margin-top: 36px;
-    padding: 14px;
+    padding: var(--panel-padding);
     border: 1px solid var(--queue-panel-border);
     border-radius: 34px;
     background: var(--queue-panel-bg);
+  }
+
+  .queue-pause {
+    position: absolute;
+    top: calc(var(--panel-padding) + 20px);
+    right: calc(var(--panel-padding) + 20px);
+    z-index: 1;
   }
 
   .queue {
@@ -448,7 +466,7 @@ const sessionsDone = 1;
 
     .panel {
       margin-top: 0;
-      padding: 22px;
+      --panel-padding: 22px;
     }
 
     .routine {
