@@ -112,8 +112,8 @@ Notas de «Preguntas»:
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema es más estrecha y corta las líneas en otros sitios (en móvil, las dos primeras respuestas ocupan dos líneas en lugar de tres y la sección queda unos 45 px más baja; en escritorio, las tarjetas miden lo mismo), y el texto queda 1 o 2 px más abajo dentro de la tarjeta; en móvil, hay 1 px más entre el título y las tarjetas.
 
 Notas del cierre y el pie:
-- Componente `Closing`. Valores en `docs/BRAND.md` › Cierre de la landing (y el pie, en › Cabecera y pie). E2E en `e2e/closing.spec.ts`.
-- Sin segundo formulario (decidido por Diego): las capturas solo muestran el botón. «Apuntarme a la lista» es un enlace a `#apuntate` que lleva al formulario del hero y pone el foco en el campo de email, como en el diseño original. El foco necesita JavaScript (un script corto en el componente, parte del formulario que permite `CLAUDE.md` › Stack); sin él, el enlace lleva igualmente al formulario. Corregido en `docs/LANDING_SPEC.md`. `WaitlistForm` pierde la prop `source`, que solo distinguía las dos instancias.
+- Componentes: `Closing` y `WaitlistLink`. Valores en `docs/BRAND.md` › Cierre de la landing (y el pie, en › Cabecera y pie). E2E en `e2e/closing.spec.ts` y `e2e/waitlist-link.spec.ts`.
+- Sin segundo formulario (decidido por Diego): las capturas solo muestran el botón. «Apuntarme a la lista» es un enlace a `#apuntate` que lleva al formulario del hero y pone el foco en el campo de email, como en el diseño original. «Apúntate» de la cabecera hace lo mismo (pedido por Diego): los dos son `WaitlistLink`, con el mismo código. El foco necesita JavaScript (un script corto en ese componente, parte del formulario que permite `CLAUDE.md` › Stack); sin él, los enlaces llevan igualmente al formulario. Corregido en `docs/LANDING_SPEC.md`. `WaitlistForm` pierde la prop `source`, que solo distinguía las dos instancias.
 - El valor `footer` de `source` que admite el backend queda sin uso: la landing enviará siempre `hero`. No se ha tocado `pulse-supabase`.
 - El brillo de encima del pie que quedaba pendiente es la sombra azul de la tarjeta, igual en los dos temas; pasa por detrás del borde del pie, como en las capturas.
 - Contraste (aprobado de antemano): el gris de «Sin días fijos. Sin presión.» da 2,3:1 en oscuro y 2,8:1 en claro en la captura; se usa blanco al 36 % y `#818b9d`, lo justo para el 3:1 de texto grande. El texto de la tarjeta es blanco opaco y no al 86 % de la captura, que bajaría de 4,5:1 sobre el inicio del gradiente (mismo criterio que en «Una sola app»).
@@ -124,7 +124,7 @@ Notas del cierre y el pie:
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado) del formulario del hero.
-- [ ] En el estado apuntado, el enlace del cierre pasa a «Ya estás en la lista». Entonces no hay campo de email al que llevar el foco: el enlace solo lleva al hero, que muestra «¡Estás dentro!».
+- [ ] En el estado apuntado, el enlace del cierre pasa a «Ya estás en la lista». Entonces no hay campo de email al que llevar el foco: ese enlace y «Apúntate» solo llevan al hero, que muestra «¡Estás dentro!».
 - [ ] Tests de la validación y de la frase de plataformas.
 
 ### Fase 4 · Conexión con la lista de espera

@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import WaitlistLink from './WaitlistLink.astro';
 
 const sections = [
   { href: '#tipos', label: 'Los tres tipos' },
@@ -23,9 +24,7 @@ const sections = [
   </nav>
   <div class="actions">
     <ThemeToggle />
-    <a class="join" href="#apuntate">
-      Apúntate
-    </a>
+    <WaitlistLink class="join">Apúntate</WaitlistLink>
   </div>
 </header>
 

@@ -21,18 +21,3 @@ test('closes with the motto and a link to the waitlist form', async ({
   ).toHaveAttribute('href', '#apuntate');
   await expect(section.getByRole('textbox')).toHaveCount(0);
 });
-
-test('takes the closing link to the hero form with the email focused', async ({
-  page,
-}) => {
-  await page.goto('/');
-
-  await page.getByRole('link', { name: 'Apuntarme a la lista' }).click();
-
-  await expect(page).toHaveURL(/#apuntate$/);
-  const email = page
-    .locator('#apuntate')
-    .getByRole('textbox', { name: 'Tu email' });
-  await expect(email).toBeFocused();
-  await expect(email).toBeInViewport();
-});

@@ -1,0 +1,25 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className, ...rest } = Astro.props;
+---
+
+<a href="#apuntate" class={className} data-focus-email {...rest}>
+  <slot />
+</a>
+
+<script>
+  document
+    .querySelectorAll<HTMLAnchorElement>('[data-focus-email]')
+    .forEach((link) => {
+      link.addEventListener('click', () => {
+        const email = document
+          .querySelector(link.hash)
+          ?.querySelector<HTMLInputElement>('input[type="email"]');
+        // Fragment navigation moves focus to the viewport, so focus after it.
+        requestAnimationFrame(() => email?.focus({ preventScroll: true }));
+      });
+    });
+</script>
