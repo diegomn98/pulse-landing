@@ -1,0 +1,458 @@
+---
+import TrainingChart from './TrainingChart.astro';
+import type { TrainingType } from './training-type';
+
+interface Step {
+  icon: 'rotate' | 'target' | 'chart';
+  title: string;
+  text: string;
+}
+
+interface QueuedRoutine {
+  type: TrainingType;
+  position: string;
+  name: string;
+  detail: string;
+  duration: string;
+}
+
+const steps: Step[] = [
+  {
+    icon: 'rotate',
+    title: 'Lo que toca, sin días fijos',
+    text: 'Te propone la rutina que más tiempo lleva esperando. Si un día no puedes, sigue ahí cuando vuelvas.',
+  },
+  {
+    icon: 'target',
+    title: 'Un objetivo que cuenta sesiones',
+    text: 'Eliges cuántas veces quieres entrenar a la semana. Nada de minutos ni calorías que perseguir.',
+  },
+  {
+    icon: 'chart',
+    title: 'Tu progreso, claro',
+    text: 'Semanas, récords y constancia en una pantalla, con lo que de verdad has hecho.',
+  },
+];
+
+const queue: QueuedRoutine[] = [
+  {
+    type: 'intervals',
+    position: 'Lo que toca hoy',
+    name: 'Intervalos 7 × 2',
+    detail: 'La que más tiempo lleva esperando: 5 días.',
+    duration: '11:40',
+  },
+  {
+    type: 'strength',
+    position: 'Después',
+    name: 'Fuerza tren superior',
+    detail: '5 ejercicios con los pesos de la última vez.',
+    duration: '≈ 45 min',
+  },
+  {
+    type: 'running',
+    position: 'Y luego',
+    name: 'Series 6 × 400 m',
+    detail: 'Con ritmo objetivo y avisos si te desvías.',
+    duration: '32:00',
+  },
+];
+
+const weeklyGoal = 4;
+const sessionsDone = 1;
+---
+
+<section id="como-funciona" class="how" aria-labelledby="how-title">
+  <div class="page-width layout">
+    <div>
+      <p class="section-eyebrow">Cómo funciona</p>
+      <h2 id="how-title" class="section-title">
+        Abres la app y ya sabes lo que toca.
+      </h2>
+      <ul class="steps">
+        {steps.map(({ icon, title, text }) => (
+          <li class="step">
+            <span class="step-icon">
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                {icon === 'rotate' && (
+                  <path d="M3 6.2a5.2 5.2 0 0 1 9.4-1.4M13 9.8a5.2 5.2 0 0 1-9.4 1.4M12.6 2.4v2.6H10M3.4 13.6V11H6" />
+                )}
+                {icon === 'target' && (
+                  <>
+                    <circle cx="8" cy="8" r="5.6" />
+                    <circle cx="8" cy="8" r="2.4" />
+                  </>
+                )}
+                {icon === 'chart' && (
+                  <path d="M2 13.2h12M4.6 13.2V8.4M8 13.2V3.6M11.4 13.2V7" />
+                )}
+              </svg>
+            </span>
+            <div>
+              <h3 class="step-title">{title}</h3>
+              <p class="step-text">{text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="panel">
+      <ol class="queue">
+        {queue.map(({ type, position, name, detail, duration }, index) => (
+          <li class:list={['routine', type]} style={{ '--position': index }}>
+            <p class="routine-position">{position}</p>
+            <p class="routine-name">{name}</p>
+            <p class="routine-detail">{detail}</p>
+            <TrainingChart type={type} />
+            <p class="routine-start">
+              <svg viewBox="0 0 10 12" aria-hidden="true">
+                <path d="M1 1.2v9.6c0 .6.6.9 1.1.6l7.4-4.8a.7.7 0 0 0 0-1.2L2.1.6C1.6.3 1 .6 1 1.2Z" />
+              </svg>
+              Empezar · {duration}
+            </p>
+          </li>
+        ))}
+      </ol>
+
+      <div class="week">
+        <p class="week-label">Esta semana</p>
+        <p class="week-count">
+          <span class="week-done">{sessionsDone}</span> de {weeklyGoal}
+        </p>
+        <p class="week-streak">Racha de 3 semanas</p>
+        <span class="week-segments" aria-hidden="true">
+          {Array.from({ length: weeklyGoal }, (_, index) => (
+            <span
+              class:list={[
+                'segment',
+                {
+                  done: index < sessionsDone,
+                  next: index === sessionsDone,
+                },
+              ]}
+            />
+          ))}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .how {
+    padding-block: 36px 50px;
+  }
+
+  .section-title {
+    margin-top: 22px;
+  }
+
+  .steps {
+    display: grid;
+    gap: 22px;
+    margin-top: 22px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 46px minmax(0, 1fr);
+    column-gap: 16px;
+    align-items: start;
+  }
+
+  .step-icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--how-border);
+    border-radius: 14px;
+    background: var(--pill);
+  }
+
+  .step-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-text {
+    margin-top: 3px;
+    color: var(--sub);
+    font-size: 15px;
+    line-height: 23px;
+  }
+
+  .panel {
+    display: grid;
+    gap: 15px;
+    margin-top: 36px;
+    padding: 14px;
+    border: 1px solid var(--queue-panel-border);
+    border-radius: 34px;
+    background: var(--queue-panel-bg);
+  }
+
+  .queue {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    perspective: 1400px;
+  }
+
+  .routine {
+    --chart-height: 52px;
+    --chart-group-gap: 16px;
+
+    display: flex;
+    grid-area: 1 / 1;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 26px;
+    color: #fff;
+    backface-visibility: hidden;
+  }
+
+  .routine:not(:first-child) {
+    opacity: 0;
+  }
+
+  .routine.intervals {
+    --routine-deep: var(--intervals-deep);
+
+    background: var(--intervals-gradient);
+    box-shadow: var(--intervals-card-shadow);
+  }
+
+  .routine.strength {
+    --routine-deep: var(--strength-deep);
+
+    background: var(--strength-gradient);
+    box-shadow: var(--strength-card-shadow);
+  }
+
+  .routine.running {
+    --routine-deep: var(--running-deep);
+
+    background: var(--running-gradient);
+    box-shadow: var(--running-card-shadow);
+  }
+
+  .routine-position {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    align-self: flex-start;
+    height: 30px;
+    padding-inline: 12px;
+    border: 1px solid var(--queue-pill-border);
+    border-radius: 999px;
+    background: var(--queue-pill-bg);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .routine-position::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .routine-name {
+    margin-top: 8px;
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .routine-detail {
+    margin-block: 14px 10px;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  .routine-start {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    margin-top: auto;
+    border-radius: 25px;
+    background: #fff;
+    color: var(--routine-deep);
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .routine :global(.chart) {
+    margin-bottom: 24px;
+  }
+
+  .routine-start svg {
+    width: 9px;
+    height: 11px;
+    fill: currentColor;
+  }
+
+  .week {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: last baseline;
+    padding: 14px 18px 16px;
+    border: 1px solid var(--how-border);
+    border-radius: 22px;
+    background: var(--week-widget-bg);
+  }
+
+  .week-label {
+    grid-column: 1 / -1;
+    color: var(--sub);
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  .week-count {
+    color: var(--sub);
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .week-done {
+    margin-right: 2px;
+    color: var(--ink);
+    font-size: 36px;
+    line-height: 36px;
+  }
+
+  .week-streak {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .week-segments {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .segment {
+    position: relative;
+    overflow: hidden;
+    height: 12px;
+    border-radius: 6px;
+    background: var(--track);
+  }
+
+  .segment.done::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--week-segment-done);
+    transform-origin: left;
+  }
+
+  .segment.next {
+    box-shadow: inset 0 0 0 1.5px var(--week-segment-current);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .routine {
+      animation: routine-turn 12s var(--ease-modal)
+        calc(var(--position) * 4s - 0.6s) infinite both;
+    }
+
+    .segment.done::before {
+      animation: week-fill 12s var(--ease-modal) -0.6s infinite both;
+    }
+
+    .panel:hover .routine,
+    .panel:hover .segment.done::before {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes routine-turn {
+    0% {
+      opacity: 0;
+      transform: rotateX(-90deg);
+    }
+
+    5%,
+    33.33% {
+      opacity: 1;
+      transform: none;
+    }
+
+    38.33%,
+    100% {
+      opacity: 0;
+      transform: rotateX(90deg);
+    }
+  }
+
+  @keyframes week-fill {
+    0% {
+      transform: scaleX(0);
+    }
+
+    5%,
+    96% {
+      opacity: 1;
+      transform: none;
+    }
+
+    100% {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .how {
+      padding-block: 54px 86px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 64px;
+      align-items: center;
+    }
+
+    .panel {
+      margin-top: 0;
+      padding: 22px;
+    }
+
+    .routine {
+      min-height: 320px;
+    }
+  }
+</style>
