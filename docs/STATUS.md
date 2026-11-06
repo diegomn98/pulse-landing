@@ -1,6 +1,6 @@
 # Estado
 
-Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios», «Lo que incluye», «Plataformas» y pie.
+Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios», «Lo que incluye», «Plataformas», «Preguntas» y pie.
 
 ## Plan por fases
 
@@ -42,7 +42,7 @@ Notas de la base visual:
 - [x] Ejercicios.
 - [x] Lo que incluye.
 - [x] Plataformas.
-- [ ] Preguntas.
+- [x] Preguntas.
 - [ ] Cierre y pie.
 - [ ] Capturas de la app optimizadas en `src/assets` y marcos de móvil (hechas las del hero: Inicio claro y oscuro, y sesión de running).
 
@@ -97,11 +97,19 @@ Notas de «Lo que incluye»:
 Notas de «Plataformas»:
 - Componente `Platforms`, con `StoreBadges` en un tamaño grande nuevo (`size="large"`): en la captura, estas insignias son más altas que las del hero. Valores en `docs/BRAND.md` › Plataformas de la landing. E2E en `e2e/platforms.spec.ts`.
 - Separación con «Lo que incluye» medida de nuevo en las capturas: 140 px en escritorio y 88 px en móvil entre el borde de las tarjetas y el de «Plataformas» (la nota anterior hablaba de 142 y 97). La sección pone 68 y 40 px encima, que sumados a los 72 y 48 de «Lo que incluye» dan esas cifras.
-- Debajo deja 72 px en escritorio y 48 px en móvil; el resto hasta «Preguntas» (la captura deja 147 y 93 px hasta el título) lo pondrá esa sección.
+- Debajo deja 72 px en escritorio y 48 px en móvil; el resto hasta «Preguntas» lo pone esa sección.
 - La sección no tiene ancla: la spec no le da una y la cabecera no la enlaza. Las insignias no son enlaces, como en el hero.
 - Tercera insignia «Próximamente en Web», pedida por Diego aunque no está en las capturas ni en `docs/LANDING_SPEC.md` (que habla solo de App Store y Google Play; falta actualizarla). Va en `StoreBadges`, así que sale en el hero y en «Plataformas». Desde 640 px las tres caben en una fila; en móvil, «Web» pasa a una segunda (la tarjeta de «Plataformas» crece de 273 a 337 px y el hero, unos 54 px).
 - Desde 960 px, texto e insignias en fila; por debajo, apilados con el relleno de escritorio desde 640 px. No hay captura a 834.
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema hace las insignias unos 3 px más estrechas y el texto en móvil queda unos 2 px más abajo.
+
+Notas de «Preguntas»:
+- Componente `Faq`. Valores en `docs/BRAND.md` › Preguntas de la landing. E2E en `e2e/faq.spec.ts`.
+- Tarjetas fijas, con la pregunta como `h3` y la respuesta en un párrafo, sin `<details>` (decidido por Diego: las capturas las muestran siempre abiertas y sin icono). Corregido en `docs/LANDING_SPEC.md`; también se ha quitado de `CLAUDE.md` › Stack la frase «Las preguntas usan `<details>`». El ADR 0001 sigue hablando de «preguntas desplegables» en su contexto.
+- Separación con «Plataformas» medida en las capturas: 148 px en escritorio y 92 px en móvil entre el borde de la tarjeta y la parte alta del texto del título. La sección pone 68 y 40 px encima, los mismos que «Plataformas», así que entre los dos bloques quedan 140 y 88 px, igual que entre «Lo que incluye» y «Plataformas».
+- Debajo deja 72 px en escritorio y 48 px en móvil; el resto hasta el cierre (la captura deja 169 y 99 px hasta «Sin días fijos») lo pondrá esa sección.
+- Dos columnas desde 640 px: a 834 px, en una sola columna, las respuestas pasarían de 100 caracteres por línea. No hay captura a 834.
+- Diferencias que quedan con las capturas (aceptadas): la fuente del sistema es más estrecha y corta las líneas en otros sitios (en móvil, las dos primeras respuestas ocupan dos líneas en lugar de tres y la sección queda unos 45 px más baja; en escritorio, las tarjetas miden lo mismo), y el texto queda 1 o 2 px más abajo dentro de la tarjeta; en móvil, hay 1 px más entre el título y las tarjetas.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.

@@ -208,6 +208,15 @@ Valores medidos en las capturas de `03-landing`.
 - Insignias de tienda en tamaño grande: 52 px de alto en móvil y 60 px desde 640 px, nombre de la tienda a 18 y 21 px, y 12 px de separación. Tres insignias (App Store, Google Play y Web), como en el hero; en móvil, la tercera pasa a una segunda fila y el grupo queda 28 px debajo del texto.
 - Desde 960 px, texto e insignias en fila, centrados en vertical; por debajo, apilados. No hay captura a 834.
 
+## Preguntas de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+- Título «Preguntas» con el estilo de «Una sola app», sin etiqueta, y 25 px hasta las tarjetas. Entre la tarjeta de «Plataformas» y el título hay 140 px en escritorio y 88 px en móvil (la sección pone 68 y 40 px encima, como «Plataformas»).
+- Tarjetas fijas con `feature-card-bg`, borde de 1 px con `feature-card-border`, radio 22 px y relleno de 20 px arriba y abajo y 22 px a los lados. 14 px de separación.
+- Pregunta en 18/23 px 700 con `ink`; respuesta en 15/22,5 px con `sub`, 6 px por debajo.
+- Dos columnas desde 640 px; por debajo, apiladas. No hay captura a 834.
+
 ## Botón de pausa
 
 No está en las capturas: se añade por accesibilidad (WCAG 2.2.2) a toda animación que se mueva sola más de 5 s.
