@@ -166,6 +166,39 @@ Valores medidos en las capturas de `03-landing`.
 - Tarjeta «Ejercicio nuevo»: 294 px de ancho (262 px en móvil), radio 22 px, relleno de 18/16 px; nombre en Figtree 19 px 800; chips de 26 px en 12 px 700; botón blanco de 40 px con texto `#0e1726` 14 px 700. En escritorio empieza en el borde de la columna, al 57 % de la altura del móvil; en móvil, al 65 % y 50 px a la izquierda del móvil.
 - Cinta: dos filas a todo el ancho, separadas 12 px, con un fundido del 10 % en cada lado (`mask-image`). Píldoras de 48 px con fondo `card`, borde `ticker-pill-border`, texto 15 px 700 y punto de 8 px en el color de gráficos de su tipo; 10 px entre píldoras. 100 px por debajo del móvil (96 px desde 960 px). Las píldoras «+ Remo en anillas» y «+ Crea el tuyo» van invertidas, con fondo `ink`, texto `ink-inverse`, sin borde y con un «+» de 11 px en lugar del punto (oscuras en claro y blancas en oscuro). Se mueven a velocidad constante, la primera fila hacia la izquierda (60 s por vuelta) y la segunda hacia la derecha (70 s); se pausan al pasar el ratón y con el botón de pausa. Con `prefers-reduced-motion`, quietas y sin botón.
 
+## Lo que incluye de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `feature-card-bg` tarjetas | `#ffffff` | `rgba(255, 255, 255, .035)` |
+| `feature-card-border` | `rgba(14, 23, 38, .06)` | `rgba(255, 255, 255, .12)` |
+| `feature-highlight` onda de voz y segmento en curso | `#8aa4ff` | igual |
+| `voice-cue-bg` globo de la frase de voz | `rgba(91, 128, 255, .16)` | igual |
+| `voice-cue-border` | `rgba(138, 164, 255, .42)` | igual |
+| `lock-widget-bg` widget de la pantalla bloqueada (oscuro en los dos temas) | `#3d3f46` | `#1a1c23` |
+| `lock-widget-border` | `#525761` | `#36383e` |
+| `lock-widget-muted` «Ronda 1 de 2» | `rgba(255, 255, 255, .6)` | igual |
+| `lock-widget-phase` «Trabajo» | `#a3b8ff` | `#8aa4ff` |
+| `lock-segment-pending` segmentos por hacer | `rgba(255, 255, 255, .17)` | igual |
+| `record-line` línea y relleno del gráfico de récords | `#f2902f` | igual |
+| `record-figure` «81 kg» | `#a34a00` | `#f2902f` |
+| `theme-preview-light` · `theme-preview-dark` mitades de la vista de tema | `#f4f6f9` · `#0b0f19` | igual |
+| `device-border` dispositivos de «Cuenta opcional» | `rgba(14, 23, 38, .16)` | `rgba(255, 255, 255, .3)` |
+| `device-bg` | `#ffffff` | `rgba(255, 255, 255, .04)` |
+
+- Etiqueta y título con el estilo de «Una sola app» (8 px entre los dos y 28 px hasta las tarjetas). Título a 720 px de ancho máximo en escritorio.
+- Tarjetas: radio 28 px, relleno de 24 px, borde de 1 px y 16 px de separación. Título en 19/24 px 700 y texto en 15/23 px con `sub`, 6 px por debajo.
+- Desde 1100 px, rejilla de tres columnas con filas de 229 px como mínimo: «Te guía con voz» ocupa dos columnas, «En la pantalla bloqueada» dos filas y «Cuenta opcional» dos columnas. En esas tarjetas, el texto y la pieza van en fila y centrados en vertical; en las demás, la pieza va al pie. Por debajo, apiladas; desde 640 px, voz y cuenta mantienen la fila. No hay captura a 834.
+- En móvil, la pieza va debajo del texto a 20 px (voz y cuenta), 14 px (pantalla bloqueada y récords) u 8 px (entreno libre y tema). «Cuenta opcional» deja 16 px de relleno inferior.
+- Voz: globo de 12 px de radio con texto en 15/21 px 600; debajo, a 12 px, 28 barras de `feature-highlight` en píldora, 4 px de separación, 56 px de alto y 362 px de ancho desde 640 px. Las barras laten en bucle (`scaleY` de 1 a .4, 1,2 s, `ease-in-out`, alternado y desfasado 110 ms entre barras); se pausan al pasar el ratón y con el botón de pausa. Con `prefers-reduced-motion`, quietas y sin botón.
+- Widget de la pantalla bloqueada: radio 20 px, relleno de 14/15/13 px; textos en 13/18 px, «Trabajo» en 10 px 800 en mayúsculas, ejercicio en 16/20 px 700 y tiempo en Figtree 36 px 800. Catorce segmentos (7 × 2) con 3 px de separación y radio 3 px: trabajo a 17 px de alto y descanso a 7 px; hechos en blanco y el actual en `feature-highlight`.
+- «Guardar como rutina»: píldora de 38 px con `ink` y `ink-inverse`, 14 px 700 y un check de 11 px.
+- Récords: «81 kg» en Figtree 21 px 800. Gráfico de 57 px de alto a todo el ancho, línea de 2,5 px y relleno de `record-line` del 35 % al 0 %.
+- Tema: 60 px de alto, radio 14 px y borde `feature-card-border`. En cada mitad, tres barras de alturas 38, 100 y 60 % con opacidad .5, 1 y .7: `#2457ff` en la clara y `#5b80ff` en la oscura.
+- Dispositivos: dos móviles de 34 × 61 px y un ordenador de 92 × 61 px, radio 10 px y 10 px de separación, con el logotipo de barras de 15 px en `intervals-chart` (opacidad .5, 1 y .7).
+
 ## Botón de pausa
 
 No está en las capturas: se añade por accesibilidad (WCAG 2.2.2) a toda animación que se mueva sola más de 5 s.
@@ -180,6 +213,7 @@ No está en las capturas: se añade por accesibilidad (WCAG 2.2.2) a toda animac
 - Círculo de 30 px con borde de 1 px y zona pulsable ampliada a 44 px. Icono de pausa o de reproducir de 10 px.
 - En la cola, arriba a la derecha de la tarjeta, alineado con su etiqueta; no gira con ella.
 - En la cinta de Ejercicios, con los valores por defecto, 12 px debajo de la cinta y alineado con el borde derecho del contenido.
+- En «Te guía con voz», con los valores por defecto, arriba a la derecha de la tarjeta, a 21 px de los bordes (alineado con el título en móvil).
 
 ## Tema
 

@@ -1,6 +1,6 @@
 # Estado
 
-Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios» y pie.
+Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios», «Lo que incluye» y pie.
 
 ## Plan por fases
 
@@ -40,7 +40,7 @@ Notas de la base visual:
 - [x] Una sola app.
 - [x] Cómo funciona.
 - [x] Ejercicios.
-- [ ] Lo que incluye.
+- [x] Lo que incluye.
 - [ ] Plataformas.
 - [ ] Preguntas.
 - [ ] Cierre y pie.
@@ -83,6 +83,15 @@ Notas de «Ejercicios»:
 - Desviación por accesibilidad (WCAG 2.2.2): botón de pausa (`PauseButton`) debajo de la cinta, alineado a la derecha del contenido. No está en las capturas. La cinta también se pausa al pasar el ratón.
 - Entre 640 y 960 px, apilado, con el móvil centrado y la tarjeta 168 px a su izquierda. No hay captura a 834.
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios y a 375 px el título ocupa tres líneas; dentro de la ficha, los textos pequeños usan la fuente del sistema y se ven algo distintos; la inclinación y el brillo naranja del móvil son aproximados.
+
+Notas de «Lo que incluye»:
+- Componentes: `WhatsIncluded` (sección y tarjetas), `VoiceWave` (frase y onda de voz) y `LockScreenWidget`. Valores en `docs/BRAND.md` › Lo que incluye de la landing. E2E en `e2e/whats-included.spec.ts`.
+- Las piezas de las tarjetas son contenido de ejemplo maquetado en HTML: sus textos están en el HTML para lectores de pantalla y las piezas gráficas (onda, segmentos, gráfico, vista de tema y dispositivos) quedan ocultas para ellos. «Guardar como rutina» es texto con aspecto de botón, como «Empezar».
+- La sección no tiene ancla: la spec no le da una y la cabecera no la enlaza.
+- Animación añadida (no está en las capturas, que son estáticas): las barras de «Te guía con voz» laten en bucle como una voz hablando. Es la única animación de la sección. Por WCAG 2.2.2 lleva `PauseButton` arriba a la derecha de la tarjeta; también se pausa al pasar el ratón. Con `prefers-reduced-motion`, quietas con las alturas de la captura y sin botón.
+- Rejilla de tres columnas desde 1100 px (por debajo, el widget de la pantalla bloqueada y el texto de voz no caben en un tercio). Entre 640 y 1100 px, tarjetas apiladas a todo el ancho; voz y cuenta mantienen el texto y la pieza en fila. No hay captura a 834.
+- Separación con lo que viene después: la captura deja 142 px (escritorio) y 97 px (móvil) entre las tarjetas y «Plataformas». La sección pone 72 y 48 px; el resto lo pondrá «Plataformas».
+- Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios (en escritorio, el texto de «Entreno libre», «Claro u oscuro» y «Cuenta opcional» ocupa una línea menos, y el globo de voz es algo más estrecho; en móvil, las tarjetas acumulan unos 2 px de diferencia de altura); por contraste, la etiqueta usa `intervals-accent`, «81 kg» usa `strength-text` en claro y «Trabajo» se aclara a `#a3b8ff` sobre el widget gris del tema claro.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.
