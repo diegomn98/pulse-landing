@@ -1,0 +1,82 @@
+---
+interface Props {
+  controls: string;
+}
+
+const { controls } = Astro.props;
+---
+
+<button
+  type="button"
+  class="pause-button"
+  aria-controls={controls}
+  aria-label="Pausar animación"
+  hidden
+>
+  <svg class="icon pause" viewBox="0 0 10 10" aria-hidden="true">
+    <rect x="1.5" y="1" width="2.2" height="8" rx="0.8"></rect>
+    <rect x="6.3" y="1" width="2.2" height="8" rx="0.8"></rect>
+  </svg>
+  <svg class="icon play" viewBox="0 0 10 10" aria-hidden="true">
+    <path d="M2.2 1.4v7.2c0 .5.5.8 1 .5l5.6-3.6a.6.6 0 0 0 0-1L3.2.9c-.5-.3-1 0-1 .5Z"></path>
+  </svg>
+</button>
+
+<script>
+  import { setupPauseButton } from '../scripts/animation-pause';
+
+  document
+    .querySelectorAll<HTMLButtonElement>('.pause-button')
+    .forEach(setupPauseButton);
+</script>
+
+<style>
+  .pause-button {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    border: 1px solid var(--pause-border, var(--card-border));
+    border-radius: 50%;
+    background: var(--pause-bg, var(--pill));
+    color: var(--pause-color, var(--ink));
+    cursor: pointer;
+  }
+
+  .pause-button[hidden] {
+    display: none;
+  }
+
+  .pause-button::before {
+    content: '';
+    position: absolute;
+    inset: -7px;
+  }
+
+  .pause-button:focus-visible {
+    outline-color: var(--pause-focus, var(--intervals-accent));
+  }
+
+  .icon {
+    width: 10px;
+    height: 10px;
+    fill: currentColor;
+  }
+
+  .play,
+  .pause-button[data-paused] .pause {
+    display: none;
+  }
+
+  .pause-button[data-paused] .play {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pause-button {
+      display: none;
+    }
+  }
+</style>
