@@ -39,7 +39,14 @@ test('lists each ticker name once for assistive technology', async ({
   await expect(lists.first().getByRole('listitem').first()).toHaveText(
     'Press banca',
   );
-  await expect(lists.last().getByRole('listitem').last()).toHaveText('Fartlek');
+  await expect(lists.first().getByRole('listitem')).toHaveCount(10);
+  await expect(lists.first().getByRole('listitem').last()).toHaveText(
+    'Remo en anillas',
+  );
+  await expect(lists.last().getByRole('listitem')).toHaveCount(10);
+  await expect(lists.last().getByRole('listitem').last()).toHaveText(
+    'Crea el tuyo',
+  );
 });
 
 test('keeps the ticker still with reduced motion', async ({ page }) => {
