@@ -13,6 +13,7 @@ test('announces the platforms where the app is coming', async ({ page }) => {
   await expect(platforms.getByRole('listitem')).toHaveText([
     /Próximamente en\s*App Store/,
     /Próximamente en\s*Google Play/,
+    /Próximamente en\s*Web/,
   ]);
   await expect(platforms.getByRole('link')).toHaveCount(0);
   await expect(platforms.getByRole('button')).toHaveCount(0);

@@ -26,6 +26,17 @@ test('lays out the waitlist form in the hero', async ({ page }) => {
   ).toHaveAttribute('href', '/privacidad');
 });
 
+test('lists the platforms where the app is coming', async ({ page }) => {
+  await page.goto('/');
+
+  const hero = page.getByRole('region', { name: 'Entrena a tu ritmo.' });
+  await expect(hero.getByRole('listitem')).toHaveText([
+    /Próximamente en\s*App Store/,
+    /Próximamente en\s*Google Play/,
+    /Próximamente en\s*Web/,
+  ]);
+});
+
 test('shows the home screen that matches the theme', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'light' });
   await page.goto('/');
