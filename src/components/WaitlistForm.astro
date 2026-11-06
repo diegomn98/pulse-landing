@@ -1,13 +1,12 @@
 ---
 interface Props {
   id?: string;
-  source: 'hero' | 'footer';
 }
 
-const { id, source } = Astro.props;
+const { id } = Astro.props;
 
-const emailId = `${source}-email`;
-const platformsLabelId = `${source}-platforms-label`;
+const emailId = 'waitlist-email';
+const platformsLabelId = 'waitlist-platforms-label';
 
 const platforms = [
   { label: 'iOS', pressed: true },
