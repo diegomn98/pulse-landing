@@ -73,21 +73,24 @@ const devices = ['phone', 'phone', 'computer'];
           </div>
           <p>Tu 1RM estimado en press banca, semana a semana.</p>
         </div>
-        <svg
-          class="chart"
-          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <defs>
-            <linearGradient id="record-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop class="chart-fill-top" offset="0"></stop>
-              <stop class="chart-fill-bottom" offset="1"></stop>
-            </linearGradient>
-          </defs>
-          <path class="chart-area" d={chartArea}></path>
-          <path class="chart-line" d={chartLine}></path>
-        </svg>
+        <div class="chart" aria-hidden="true">
+          <div class="chart-reveal">
+            <svg
+              class="chart-drawing"
+              viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+              preserveAspectRatio="none"
+            >
+              <defs>
+                <linearGradient id="record-fill" x1="0" y1="0" x2="0" y2="1">
+                  <stop class="chart-fill-top" offset="0"></stop>
+                  <stop class="chart-fill-bottom" offset="1"></stop>
+                </linearGradient>
+              </defs>
+              <path class="chart-area" d={chartArea}></path>
+              <path class="chart-line" d={chartLine}></path>
+            </svg>
+          </div>
+        </div>
       </li>
 
       <li class="card theme">
@@ -228,10 +231,24 @@ const devices = ['phone', 'phone', 'computer'];
   }
 
   .chart {
-    display: block;
-    width: 100%;
     height: 57px;
     margin-top: 14px;
+    view-timeline: --record-chart block;
+  }
+
+  .chart-reveal {
+    --stroke-room: 3px;
+
+    height: calc(100% + 2 * var(--stroke-room));
+    margin: calc(-1 * var(--stroke-room));
+    padding: var(--stroke-room);
+    overflow: hidden;
+  }
+
+  .chart-drawing {
+    display: block;
+    width: 100%;
+    height: 100%;
     overflow: visible;
   }
 
@@ -358,6 +375,35 @@ const devices = ['phone', 'phone', 'computer'];
   @media (prefers-reduced-motion: no-preference) {
     .voice:hover :global(.bar) {
       animation-play-state: paused;
+    }
+  }
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .chart-reveal,
+      .chart-drawing {
+        animation-name: chart-reveal;
+        animation-timing-function: linear;
+        animation-fill-mode: both;
+        animation-timeline: --record-chart;
+        animation-range: entry 100% cover 50%;
+      }
+
+      .chart-drawing {
+        animation-name: chart-counter-reveal;
+      }
+    }
+  }
+
+  @keyframes chart-reveal {
+    from {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes chart-counter-reveal {
+    from {
+      transform: translateX(calc(100% + 2 * var(--stroke-room)));
     }
   }
 

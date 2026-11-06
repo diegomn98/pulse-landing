@@ -61,3 +61,35 @@ test('pauses and resumes the voice wave', async ({ page }) => {
   await page.mouse.move(0, 0);
   await expect(bar).toHaveCSS('animation-play-state', 'running');
 });
+
+test('shows the record chart drawn with reduced motion', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+
+  const reveal = page.locator(`${section} .chart-reveal`);
+  await expect(reveal).toHaveCSS('animation-name', 'none');
+  await expect(reveal).toHaveCSS('transform', 'none');
+});
+
+test('draws the record chart as it scrolls into view', async ({ page }) => {
+  await page.goto('/');
+
+  const reveal = page.locator(`${section} .chart-reveal`);
+  const offset = () =>
+    reveal.evaluate(
+      (element) => new DOMMatrix(getComputedStyle(element).transform).m41,
+    );
+  test.skip(
+    (await reveal.evaluate(
+      (element) => getComputedStyle(element).animationName,
+    )) === 'none',
+    'Scroll-driven animations are not supported',
+  );
+
+  await expect.poll(offset).toBeLessThan(0);
+
+  await reveal.evaluate((element) =>
+    element.scrollIntoView({ block: 'start', behavior: 'instant' }),
+  );
+  await expect.poll(offset).toBe(0);
+});
