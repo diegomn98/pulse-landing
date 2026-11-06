@@ -170,6 +170,17 @@
   --device-border: light-dark(rgba(14, 23, 38, 0.16), rgba(255, 255, 255, 0.3));
   --device-bg: light-dark(#ffffff, rgba(255, 255, 255, 0.04));
 
+  --motto-muted: light-dark(#818b9d, rgba(255, 255, 255, 0.36));
+  --motto-accent: linear-gradient(
+    90deg,
+    light-dark(#2457ff, #8aa4ff),
+    light-dark(#15803d, #34c46e),
+    light-dark(#c2560a, #f2902f)
+  );
+  --closing-card-shadow: 0 46px 120px -46px rgba(36, 87, 255, 0.9);
+  --closing-button-shadow: 0 28px 28px -18px rgba(10, 30, 120, 0.4);
+  --closing-bar: rgba(255, 255, 255, 0.16);
+
   --font-text:
     -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui,
     sans-serif;
