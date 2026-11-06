@@ -2,33 +2,52 @@
 import PauseButton from './PauseButton.astro';
 import type { TrainingType } from './training-type';
 
+type TickerPill = TrainingType | 'own';
+
 interface TickerExercise {
   name: string;
-  type: TrainingType;
+  pill: TickerPill;
 }
 
-const rows: TickerExercise[][] = [
-  [
-    { name: 'Press banca', type: 'strength' },
-    { name: 'Sentadilla con salto', type: 'intervals' },
-    { name: 'Peso muerto rumano', type: 'strength' },
-    { name: 'Escaladores', type: 'intervals' },
-    { name: 'Remo con barra', type: 'strength' },
-    { name: 'Zancadas alternas', type: 'intervals' },
-    { name: 'Press militar', type: 'strength' },
-    { name: 'Burpees', type: 'intervals' },
-  ],
-  [
-    { name: 'Flexiones', type: 'intervals' },
-    { name: 'Elevaciones laterales', type: 'strength' },
-    { name: 'Series de 400 m', type: 'running' },
-    { name: 'Curl de bíceps', type: 'strength' },
-    { name: 'Fondos', type: 'strength' },
-    { name: 'Rodaje suave', type: 'running' },
-    { name: 'Remo en polea baja', type: 'strength' },
-    { name: 'Sentadilla', type: 'strength' },
-    { name: 'Fartlek', type: 'running' },
-  ],
+interface TickerRow {
+  direction: 'left' | 'right';
+  seconds: number;
+  exercises: TickerExercise[];
+}
+
+const rows: TickerRow[] = [
+  {
+    direction: 'left',
+    seconds: 60,
+    exercises: [
+      { name: 'Press banca', pill: 'strength' },
+      { name: 'Sentadilla con salto', pill: 'intervals' },
+      { name: 'Peso muerto rumano', pill: 'strength' },
+      { name: 'Escaladores', pill: 'intervals' },
+      { name: 'Remo con barra', pill: 'strength' },
+      { name: 'Zancadas alternas', pill: 'intervals' },
+      { name: 'Press militar', pill: 'strength' },
+      { name: 'Burpees', pill: 'intervals' },
+      { name: 'Dominadas', pill: 'strength' },
+      { name: 'Remo en anillas', pill: 'own' },
+    ],
+  },
+  {
+    direction: 'right',
+    seconds: 70,
+    exercises: [
+      { name: 'Flexiones', pill: 'intervals' },
+      { name: 'Elevaciones laterales', pill: 'strength' },
+      { name: 'Series de 400 m', pill: 'running' },
+      { name: 'Curl de bíceps', pill: 'strength' },
+      { name: 'Fondos', pill: 'strength' },
+      { name: 'Rodaje suave', pill: 'running' },
+      { name: 'Remo en polea baja', pill: 'strength' },
+      { name: 'Sentadilla', pill: 'strength' },
+      { name: 'Fartlek', pill: 'running' },
+      { name: 'Crea el tuyo', pill: 'own' },
+    ],
+  },
 ];
 
 const copies = 3;
@@ -36,12 +55,22 @@ const copies = 3;
 
 <div id="exercise-ticker" class="ticker">
   <div class="rows">
-    {rows.map((exercises) => (
-      <div class="track" style={{ '--copies': copies }}>
+    {rows.map(({ direction, seconds, exercises }) => (
+      <div
+        class:list={['track', direction]}
+        style={{ '--copies': copies, '--seconds': `${seconds}s` }}
+      >
         {Array.from({ length: copies }, (_, copy) => (
           <ul class="names" aria-hidden={copy > 0 ? 'true' : undefined}>
-            {exercises.map(({ name, type }) => (
-              <li class:list={['name', type]}>{name}</li>
+            {exercises.map(({ name, pill }) => (
+              <li class:list={['name', pill]}>
+                {pill === 'own' && (
+                  <svg viewBox="0 0 12 12" aria-hidden="true">
+                    <path d="M6 1.5v9M1.5 6h9" />
+                  </svg>
+                )}
+                {name}
+              </li>
             ))}
           </ul>
         ))}
@@ -117,6 +146,25 @@ const copies = 3;
     --dot: var(--strength-chart);
   }
 
+  .own {
+    border-color: transparent;
+    background: #fff;
+    color: #0e1726;
+  }
+
+  .own::before {
+    display: none;
+  }
+
+  .own svg {
+    width: 11px;
+    height: 11px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+  }
+
   .pause {
     display: flex;
     justify-content: flex-end;
@@ -131,10 +179,10 @@ const copies = 3;
 
   @media (prefers-reduced-motion: no-preference) {
     .track {
-      animation: ticker-left 50s linear infinite;
+      animation: ticker-left var(--seconds) linear infinite;
     }
 
-    .track:nth-child(even) {
+    .track.right {
       animation-name: ticker-right;
     }
 
