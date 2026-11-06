@@ -130,6 +130,22 @@
   --week-segment-done: #34c46e;
   --week-segment-current: rgba(255, 255, 255, 0.62);
 
+  --exercise-phone-shadow:
+    0 60px 110px -16px
+      light-dark(rgba(194, 86, 10, 0.3), rgba(194, 86, 10, 0.4)),
+    var(--phone-shadow);
+  --exercise-screen-bg: light-dark(#f7f9fb, #080b13);
+  --exercise-sketch: light-dark(#b2b9c3, rgba(255, 255, 255, 0.2));
+  --new-exercise-bg: light-dark(#3e414b, #131620);
+  --new-exercise-border: light-dark(
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0.15)
+  );
+  --new-exercise-shadow: 0 30px 60px -24px
+    light-dark(rgba(14, 23, 38, 0.5), rgba(0, 0, 0, 0.6));
+  --new-exercise-chip: rgba(255, 255, 255, 0.1);
+  --new-exercise-accent: #f2902f;
+
   --font-text:
     -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui,
     sans-serif;

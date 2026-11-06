@@ -1,0 +1,157 @@
+---
+import PauseButton from './PauseButton.astro';
+import type { TrainingType } from './training-type';
+
+interface TickerExercise {
+  name: string;
+  type: TrainingType;
+}
+
+const rows: TickerExercise[][] = [
+  [
+    { name: 'Press banca', type: 'strength' },
+    { name: 'Sentadilla con salto', type: 'intervals' },
+    { name: 'Peso muerto rumano', type: 'strength' },
+    { name: 'Escaladores', type: 'intervals' },
+    { name: 'Remo con barra', type: 'strength' },
+    { name: 'Zancadas alternas', type: 'intervals' },
+    { name: 'Press militar', type: 'strength' },
+    { name: 'Burpees', type: 'intervals' },
+  ],
+  [
+    { name: 'Flexiones', type: 'intervals' },
+    { name: 'Elevaciones laterales', type: 'strength' },
+    { name: 'Series de 400 m', type: 'running' },
+    { name: 'Curl de bíceps', type: 'strength' },
+    { name: 'Fondos', type: 'strength' },
+    { name: 'Rodaje suave', type: 'running' },
+    { name: 'Remo en polea baja', type: 'strength' },
+    { name: 'Sentadilla', type: 'strength' },
+    { name: 'Fartlek', type: 'running' },
+  ],
+];
+
+const copies = 3;
+---
+
+<div id="exercise-ticker" class="ticker">
+  <div class="rows">
+    {rows.map((exercises) => (
+      <div class="track" style={{ '--copies': copies }}>
+        {Array.from({ length: copies }, (_, copy) => (
+          <ul class="names" aria-hidden={copy > 0 ? 'true' : undefined}>
+            {exercises.map(({ name, type }) => (
+              <li class:list={['name', type]}>{name}</li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    ))}
+  </div>
+  <div class="page-width pause">
+    <PauseButton controls="exercise-ticker" />
+  </div>
+</div>
+
+<style>
+  .ticker {
+    --gap: 10px;
+  }
+
+  .rows {
+    display: grid;
+    gap: 12px;
+    overflow: hidden;
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 10%,
+      #000 90%,
+      transparent
+    );
+  }
+
+  .track {
+    display: flex;
+    width: max-content;
+  }
+
+  .names {
+    display: flex;
+    gap: var(--gap);
+    padding: 0 var(--gap) 0 0;
+    list-style: none;
+  }
+
+  .name {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    height: 48px;
+    padding: 0 18px 0 15px;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: var(--card);
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .name::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--dot);
+  }
+
+  .intervals {
+    --dot: var(--intervals-chart);
+  }
+
+  .running {
+    --dot: var(--running-chart);
+  }
+
+  .strength {
+    --dot: var(--strength-chart);
+  }
+
+  .pause {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pause {
+      display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .track {
+      animation: ticker-left 50s linear infinite;
+    }
+
+    .track:nth-child(even) {
+      animation-name: ticker-right;
+    }
+
+    .rows:hover .track {
+      animation-play-state: paused;
+    }
+  }
+
+  @keyframes ticker-left {
+    to {
+      transform: translateX(calc(-100% / var(--copies)));
+    }
+  }
+
+  @keyframes ticker-right {
+    from {
+      transform: translateX(calc(-100% / var(--copies)));
+    }
+  }
+</style>

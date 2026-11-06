@@ -1,0 +1,537 @@
+---
+import PhoneFrame from './PhoneFrame.astro';
+
+interface Props {
+  class?: string;
+}
+
+interface Muscle {
+  name: string;
+  load: 1 | 2 | 3;
+}
+
+const { class: className } = Astro.props;
+
+const muscles: Muscle[] = [
+  { name: 'pecho', load: 3 },
+  { name: 'tríceps', load: 2 },
+  { name: 'hombro', load: 1 },
+];
+---
+
+<PhoneFrame class:list={['exercise-phone', className]}>
+  <div class="sheet">
+    <div class="photo">
+      <span class="round-button back" aria-hidden="true">
+        <svg viewBox="0 0 12 12">
+          <path d="M7.4 2.6 4 6l3.4 3.4"></path>
+        </svg>
+      </span>
+      <span class="round-button favorite" aria-hidden="true">
+        <svg viewBox="0 0 12 12">
+          <path d="M6 10.4S1.4 7.7 1.4 4.6A2.4 2.4 0 0 1 6 3.5a2.4 2.4 0 0 1 4.6 1.1c0 3.1-4.6 5.8-4.6 5.8Z"></path>
+        </svg>
+      </span>
+      <span class="round-button more" aria-hidden="true">
+        <svg viewBox="0 0 12 12">
+          <circle cx="2.6" cy="6" r="1"></circle>
+          <circle cx="6" cy="6" r="1"></circle>
+          <circle cx="9.4" cy="6" r="1"></circle>
+        </svg>
+      </span>
+      <p class="watch">
+        <span class="watch-icon" aria-hidden="true">
+          <svg viewBox="0 0 10 10">
+            <path d="M3 2v6l5-3Z"></path>
+          </svg>
+        </span>
+        Ver cómo se hace
+      </p>
+      <svg class="sketch" viewBox="0 0 284 250" aria-hidden="true">
+        <rect x="56" y="173" width="176" height="6" rx="3"></rect>
+        <rect x="84" y="151" width="8" height="50" rx="4"></rect>
+        <rect x="93" y="143" width="10" height="66" rx="5"></rect>
+        <rect x="185" y="143" width="10" height="66" rx="5"></rect>
+        <rect x="196" y="151" width="8" height="50" rx="4"></rect>
+        <rect x="68" y="222" width="140" height="3" rx="1.5"></rect>
+        <rect x="112" y="222" width="3" height="16" rx="1.5"></rect>
+        <rect x="178" y="222" width="3" height="18" rx="1.5"></rect>
+      </svg>
+      <p class="photo-label">Foto o vídeo del ejercicio</p>
+    </div>
+
+    <div class="body">
+      <ul class="tags">
+        <li>Pecho</li>
+        <li>Barra y banco</li>
+      </ul>
+      <p class="name">Press banca</p>
+      <p class="muscles">
+        Trabaja
+        {muscles.map(({ name, load }) => (
+          <span class:list={['muscle', { main: load === 3 }]}>
+            <span class="load" aria-hidden="true">
+              {[1, 2, 3].map((level) => (
+                <span class:list={['load-dot', { on: level <= load }]} />
+              ))}
+            </span>
+            {name}
+          </span>
+        ))}
+      </p>
+
+      <div class="progress">
+        <div class="progress-head">
+          <div>
+            <p class="progress-label">1RM estimado</p>
+            <p class="progress-value">
+              81 <span>kg</span>
+            </p>
+          </div>
+          <p class="trend">
+            <svg viewBox="0 0 10 10" aria-hidden="true">
+              <path d="M5 8.5v-7M2 4.2 5 1.5l3 2.7"></path>
+            </svg>
+            +6 kg en 8 semanas
+          </p>
+        </div>
+        <svg
+          class="chart"
+          viewBox="0 0 240 110"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient
+              id="exercise-progress-fill"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop
+                offset="0"
+                stop-color="currentColor"
+                stop-opacity="0.3"
+              ></stop>
+              <stop
+                offset="1"
+                stop-color="currentColor"
+                stop-opacity="0"
+              ></stop>
+            </linearGradient>
+          </defs>
+          <path class="grid" d="M0 24h240M0 54h240M0 84h240"></path>
+          <path class="marker" d="M236 18v92"></path>
+          <path
+            class="area"
+            d="M0 96 22 92 46 94 70 86 98 79 118 72 148 72 208 44 236 36V110H0Z"
+          ></path>
+          <path
+            class="line"
+            d="M0 96 22 92 46 94 70 86 98 79 118 72 148 72 208 44 236 36"
+          ></path>
+          <circle class="point" cx="236" cy="36" r="4"></circle>
+        </svg>
+        <p class="chart-axis">
+          <span>5 oct</span>
+          <span>3 nov</span>
+        </p>
+        <div class="stats">
+          <div class="stat">
+            <p class="stat-label record">
+              <svg viewBox="0 0 10 10" aria-hidden="true">
+                <path d="M3 1.5h4v2.2a2 2 0 0 1-4 0Zm-1.6.6H3M7 2.1h1.6M5 5.7V7.6M3.4 8.6h3.2"></path>
+              </svg>
+              Récord
+            </p>
+            <p class="stat-value">70 kg × 5</p>
+            <p class="stat-note">mar 3 nov</p>
+          </div>
+          <div class="stat">
+            <p class="stat-label">Volumen la última vez</p>
+            <p class="stat-value">1860 kg</p>
+            <p class="stat-note">4 series</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="last-time">
+        <span class="last-time-title">La última vez</span>
+        <span class="last-time-detail">mar 3 nov · Fuerza tren superior ›</span>
+      </p>
+    </div>
+  </div>
+</PhoneFrame>
+
+<style>
+  .sheet {
+    position: relative;
+    overflow: hidden;
+    height: 640px;
+    background: var(--exercise-screen-bg);
+    font-family: var(--font-text);
+  }
+
+  .photo {
+    position: relative;
+    height: 250px;
+    border-radius: 0 0 22px 22px;
+    background: var(--photo);
+  }
+
+  .round-button {
+    position: absolute;
+    top: 39px;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--card-border);
+    border-radius: 50%;
+    background: var(--card);
+    box-shadow: var(--card-shadow);
+  }
+
+  .round-button svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .back {
+    left: 11px;
+  }
+
+  .back svg {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .favorite {
+    right: 51px;
+  }
+
+  .favorite svg {
+    fill: var(--strength-text);
+  }
+
+  .more {
+    right: 13px;
+  }
+
+  .more svg {
+    fill: var(--ink);
+  }
+
+  .watch {
+    position: absolute;
+    top: 98px;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 36px;
+    padding: 0 14px 0 5px;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: var(--card);
+    box-shadow: var(--card-shadow);
+    font-size: 11.5px;
+    font-weight: 700;
+    white-space: nowrap;
+    translate: -50% 0;
+  }
+
+  .watch-icon {
+    display: grid;
+    place-items: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ink);
+  }
+
+  .watch-icon svg {
+    width: 9px;
+    height: 9px;
+    fill: var(--ink-inverse);
+  }
+
+  .sketch {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    fill: var(--exercise-sketch);
+  }
+
+  .photo-label {
+    position: absolute;
+    bottom: 12px;
+    left: 16px;
+    color: var(--faint);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .body {
+    padding: 16px 14px 0;
+  }
+
+  .tags {
+    display: flex;
+    gap: 5px;
+    padding: 0 0 0 2px;
+    list-style: none;
+  }
+
+  .tags li {
+    padding: 3px 8px;
+    border: 1px solid var(--card-border);
+    border-radius: 999px;
+    background: var(--pill);
+    color: var(--sub);
+    font-size: 9.5px;
+    font-weight: 700;
+    line-height: 14px;
+  }
+
+  .name {
+    margin-top: 8px;
+    padding-left: 2px;
+    font-family: var(--font-display);
+    font-size: 29px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+  }
+
+  .muscles {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    margin-top: 4px;
+    padding-left: 2px;
+    color: var(--sub);
+    font-size: 10.5px;
+    line-height: 14px;
+  }
+
+  .muscle {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .muscle.main {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .load {
+    display: inline-flex;
+    gap: 1.5px;
+  }
+
+  .load-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--faint);
+    opacity: 0.6;
+  }
+
+  .load-dot.on {
+    background: var(--ink);
+    opacity: 1;
+  }
+
+  .progress {
+    margin-top: 10px;
+    padding: 12px 12px 10px;
+    border: 1px solid var(--strength-card-border);
+    border-radius: 16px;
+    background: var(--strength-card);
+  }
+
+  .progress-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .progress-label {
+    color: var(--strength-text);
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .progress-value {
+    margin-top: 2px;
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .progress-value span {
+    color: var(--sub);
+    font-family: var(--font-text);
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  .trend {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: var(--strength-tint);
+    color: var(--strength-text);
+    font-size: 8.5px;
+    font-weight: 800;
+    line-height: 12px;
+  }
+
+  .trend svg {
+    width: 8px;
+    height: 8px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .chart {
+    display: block;
+    width: 100%;
+    height: 108px;
+    margin-top: -4px;
+    overflow: visible;
+    color: var(--strength-chart);
+  }
+
+  .grid {
+    stroke: var(--line);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .marker {
+    stroke: var(--strength-chart);
+    stroke-width: 1;
+    stroke-dasharray: 2 3;
+    opacity: 0.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .area {
+    fill: url(#exercise-progress-fill);
+  }
+
+  .line {
+    fill: none;
+    stroke: var(--strength-chart);
+    stroke-width: 2;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .point {
+    fill: var(--strength-chart);
+    stroke: var(--exercise-screen-bg);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .chart-axis {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 45%;
+    color: var(--faint);
+    font-size: 8px;
+    line-height: 14px;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px;
+    margin-top: 8px;
+  }
+
+  .stat {
+    padding: 8px 9px 9px;
+    border-radius: 10px;
+    background: var(--pill);
+  }
+
+  .stat-label {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    color: var(--sub);
+    font-size: 8.5px;
+    line-height: 12px;
+  }
+
+  .stat-label.record {
+    color: var(--strength-text);
+    font-weight: 700;
+  }
+
+  .stat-label svg {
+    width: 9px;
+    height: 9px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.1;
+    stroke-linecap: round;
+  }
+
+  .stat-value {
+    margin-top: 2px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 18px;
+  }
+
+  .stat-note {
+    color: var(--sub);
+    font-size: 8.5px;
+    line-height: 12px;
+  }
+
+  .last-time {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+    margin-top: 10px;
+    padding: 12px 12px 20px;
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    background: var(--card);
+    white-space: nowrap;
+  }
+
+  .last-time-title {
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .last-time-detail {
+    color: var(--strength-text);
+    font-size: 8.5px;
+    font-weight: 600;
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+const details = ['Espalda', 'Anillas', 'Reps y kg'];
+---
+
+<div class:list={['new-exercise', className]}>
+  <p class="label">Ejercicio nuevo</p>
+  <p class="name">Remo en anillas</p>
+  <ul class="details">
+    {details.map((detail) => (
+      <li>{detail}</li>
+    ))}
+  </ul>
+  <p class="save">
+    <svg viewBox="0 0 12 12" aria-hidden="true">
+      <path d="M6 1.5v9M1.5 6h9"></path>
+    </svg>
+    Guardar en mis ejercicios
+  </p>
+</div>
+
+<style>
+  .new-exercise {
+    width: 294px;
+    padding: 18px 16px 16px;
+    border: 1px solid var(--new-exercise-border);
+    border-radius: 22px;
+    background: var(--new-exercise-bg);
+    box-shadow: var(--new-exercise-shadow);
+    color: #fff;
+  }
+
+  .label {
+    color: var(--new-exercise-accent);
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 14px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .name {
+    display: flex;
+    align-items: center;
+    margin-top: 12px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 800;
+    line-height: 26px;
+    letter-spacing: -0.02em;
+  }
+
+  .name::after {
+    content: '';
+    width: 2px;
+    height: 20px;
+    margin-left: 2px;
+    border-radius: 1px;
+    background: var(--new-exercise-accent);
+  }
+
+  .details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .details li {
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: var(--new-exercise-chip);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+  }
+
+  .save {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    margin-top: 12px;
+    border-radius: 20px;
+    background: #fff;
+    color: #0e1726;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .save svg {
+    width: 11px;
+    height: 11px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+  }
+</style>

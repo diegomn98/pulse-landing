@@ -1,0 +1,225 @@
+---
+import ExerciseSheet from './ExerciseSheet.astro';
+import ExerciseTicker from './ExerciseTicker.astro';
+import NewExerciseCard from './NewExerciseCard.astro';
+
+interface Advantage {
+  icon: 'camera' | 'plus' | 'chart' | 'swap';
+  title: string;
+  text: string;
+}
+
+const advantages: Advantage[] = [
+  {
+    icon: 'camera',
+    title: 'Foto y técnica.',
+    text: 'Cómo se hace, paso a paso, y qué músculos trabaja.',
+  },
+  {
+    icon: 'plus',
+    title: 'Crea los tuyos.',
+    text: 'Nombre, grupo muscular y material. Listo para cualquier rutina.',
+  },
+  {
+    icon: 'chart',
+    title: 'Tu progreso en cada uno.',
+    text: 'Récords, 1RM estimado y lo que hiciste la última vez.',
+  },
+  {
+    icon: 'swap',
+    title: '¿Máquina ocupada?',
+    text: 'Te proponemos alternativas que trabajan lo mismo.',
+  },
+];
+---
+
+<section id="ejercicios" class="exercises" aria-labelledby="exercises-title">
+  <div class="page-width layout">
+    <div>
+      <p class="section-eyebrow">Tus ejercicios</p>
+      <h2 id="exercises-title" class="section-title">
+        <span>Más de 180 ejercicios.</span> <span>Y los que tú añadas.</span>
+      </h2>
+      <p class="lead">
+        Cada uno con su foto, cómo se hace y tu progreso. ¿Haces algo que no
+        está? Lo creas en segundos y lo usas en cualquier rutina.
+      </p>
+      <ul class="advantages">
+        {advantages.map(({ icon, title, text }) => (
+          <li class="advantage">
+            <span class="advantage-icon">
+              <svg viewBox="0 0 12 12" aria-hidden="true">
+                {icon === 'camera' && (
+                  <>
+                    <path d="M1.8 4.2c0-.6.4-1 1-1h1.3l.8-1.2h2.2l.8 1.2h1.3c.6 0 1 .4 1 1v4.6c0 .6-.4 1-1 1H2.8c-.6 0-1-.4-1-1Z" />
+                    <circle cx="6" cy="6.3" r="1.6" />
+                  </>
+                )}
+                {icon === 'plus' && <path d="M6 2v8M2 6h8" />}
+                {icon === 'chart' && <path d="M3 10V6.5M6 10V2.5M9 10V5" />}
+                {icon === 'swap' && (
+                  <path d="M2.5 8.5A4 4 0 0 1 9.4 5M9.6 2.6v2.6H7" />
+                )}
+              </svg>
+            </span>
+            <p>
+              <strong>{title}</strong> {text}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="showcase">
+      <ExerciseSheet class="sheet-phone" />
+      <NewExerciseCard class="new-card" />
+    </div>
+  </div>
+
+  <ExerciseTicker />
+</section>
+
+<style>
+  .exercises {
+    padding-block: 36px 20px;
+    overflow-x: clip;
+  }
+
+  .section-eyebrow {
+    color: var(--strength-text);
+  }
+
+  .section-title {
+    margin-top: 22px;
+  }
+
+  .section-title span {
+    display: block;
+  }
+
+  .lead {
+    max-width: 530px;
+    margin-top: 22px;
+    color: var(--nav-link);
+    font-size: 17px;
+    line-height: 26px;
+  }
+
+  .advantages {
+    display: grid;
+    gap: 12px;
+    margin-top: 22px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .advantage {
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
+    column-gap: 12px;
+    align-items: start;
+    color: var(--sub);
+    font-size: 15px;
+    line-height: 22px;
+  }
+
+  .advantage strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .advantage-icon {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--strength-tint);
+    color: var(--strength-chart);
+  }
+
+  .advantage-icon svg {
+    width: 12px;
+    height: 12px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .showcase {
+    position: relative;
+    display: grid;
+    justify-items: center;
+    margin-top: 38px;
+  }
+
+  .showcase :global(.sheet-phone) {
+    --phone-width: 300px;
+
+    box-shadow: var(--exercise-phone-shadow);
+    zoom: 0.8667;
+    transform: perspective(1400px) rotateY(14deg) rotateZ(-1deg);
+  }
+
+  .showcase :global(.new-card) {
+    position: absolute;
+    top: 65%;
+    left: max(0px, 50% - 180px);
+    width: 262px;
+  }
+
+  .exercises :global(.ticker) {
+    margin-top: 100px;
+  }
+
+  @media (min-width: 640px) {
+    .lead {
+      font-size: 20px;
+      line-height: 31px;
+    }
+
+    .advantage {
+      font-size: 16px;
+      line-height: 23px;
+    }
+
+    .showcase :global(.sheet-phone) {
+      zoom: 1;
+    }
+
+    .showcase :global(.new-card) {
+      left: max(0px, 50% - 318px);
+      width: 294px;
+    }
+  }
+
+  @media (min-width: 960px) {
+    .exercises {
+      padding-block: 54px 24px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 64px;
+      align-items: center;
+    }
+
+    .showcase {
+      justify-items: start;
+      margin-top: 0;
+      padding-left: 168px;
+    }
+
+    .showcase :global(.new-card) {
+      top: 57%;
+      left: 0;
+    }
+
+    .exercises :global(.ticker) {
+      margin-top: 96px;
+    }
+  }
+</style>
