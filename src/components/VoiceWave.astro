@@ -1,0 +1,70 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+
+const barHeights = [
+  20, 43, 55, 51, 32, 33, 51, 55, 43, 21, 44, 56, 51, 31, 33, 52, 55, 42, 21,
+  44, 56, 50, 31, 34, 52, 55, 42, 22,
+];
+---
+
+<div class="voice-sample">
+  <p class="cue">«Descanso. Después: escaladores.»</p>
+  <div {id} class="wave" aria-hidden="true">
+    {barHeights.map((height, index) => (
+      <span
+        class="bar"
+        style={{ '--height': `${height}px`, '--index': index }}
+      />
+    ))}
+  </div>
+</div>
+
+<style>
+  .voice-sample {
+    display: grid;
+    justify-items: start;
+    gap: 12px;
+  }
+
+  .cue {
+    padding: 9px 15px;
+    border: 1px solid var(--voice-cue-border);
+    border-radius: 12px;
+    background: var(--voice-cue-bg);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 21px;
+  }
+
+  .wave {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-self: stretch;
+    height: 56px;
+  }
+
+  .bar {
+    flex: 1;
+    height: var(--height);
+    border-radius: 999px;
+    background: var(--feature-highlight);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .bar {
+      animation: speak 1.2s ease-in-out infinite alternate;
+      animation-delay: calc(var(--index) * -110ms);
+    }
+  }
+
+  @keyframes speak {
+    to {
+      transform: scaleY(0.4);
+    }
+  }
+</style>

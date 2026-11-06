@@ -150,6 +150,26 @@
     rgba(255, 255, 255, 0.09)
   );
 
+  --feature-card-bg: light-dark(#ffffff, rgba(255, 255, 255, 0.035));
+  --feature-card-border: light-dark(
+    rgba(14, 23, 38, 0.06),
+    rgba(255, 255, 255, 0.12)
+  );
+  --feature-highlight: #8aa4ff;
+  --voice-cue-bg: rgba(91, 128, 255, 0.16);
+  --voice-cue-border: rgba(138, 164, 255, 0.42);
+  --lock-widget-bg: light-dark(#3d3f46, #1a1c23);
+  --lock-widget-border: light-dark(#525761, #36383e);
+  --lock-widget-muted: rgba(255, 255, 255, 0.6);
+  --lock-widget-phase: light-dark(#a3b8ff, #8aa4ff);
+  --lock-segment-pending: rgba(255, 255, 255, 0.17);
+  --record-line: #f2902f;
+  --record-figure: light-dark(#a34a00, #f2902f);
+  --theme-preview-light: #f4f6f9;
+  --theme-preview-dark: #0b0f19;
+  --device-border: light-dark(rgba(14, 23, 38, 0.16), rgba(255, 255, 255, 0.3));
+  --device-bg: light-dark(#ffffff, rgba(255, 255, 255, 0.04));
+
   --font-text:
     -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui,
     sans-serif;

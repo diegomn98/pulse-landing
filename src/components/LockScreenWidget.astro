@@ -1,0 +1,122 @@
+---
+type SegmentPhase = 'work' | 'rest';
+type SegmentState = 'done' | 'current' | 'pending';
+
+interface Segment {
+  phase: SegmentPhase;
+  state: SegmentState;
+}
+
+const rounds = 7;
+const currentSegment = 4;
+
+const segments: Segment[] = Array.from({ length: rounds * 2 }, (_, index) => ({
+  phase: index % 2 === 0 ? 'work' : 'rest',
+  state:
+    index < currentSegment
+      ? 'done'
+      : index === currentSegment
+        ? 'current'
+        : 'pending',
+}));
+---
+
+<div class="widget">
+  <p class="routine">Intervalos 7 × 2</p>
+  <p class="round">Ronda 1 de 2</p>
+  <p class="exercise">
+    <span class="phase">Trabajo</span>
+    <span class="name">Sentadilla con salto</span>
+  </p>
+  <p class="time">0:24</p>
+  <div class="segments" aria-hidden="true">
+    {segments.map(({ phase, state }) => (
+      <span class:list={['segment', phase, state]} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .widget {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    column-gap: 12px;
+    padding: 14px 15px 13px;
+    border: 1px solid var(--lock-widget-border);
+    border-radius: 20px;
+    background: var(--lock-widget-bg);
+    color: #fff;
+  }
+
+  .routine,
+  .round {
+    align-self: start;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 18px;
+  }
+
+  .round {
+    color: var(--lock-widget-muted);
+    font-weight: 600;
+  }
+
+  .exercise {
+    display: grid;
+    margin-top: 8px;
+  }
+
+  .phase {
+    color: var(--lock-widget-phase);
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .name {
+    margin-top: 1px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+
+  .time {
+    margin-bottom: -3px;
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .segments {
+    display: flex;
+    grid-column: 1 / -1;
+    gap: 3px;
+    align-items: end;
+    margin-top: 10px;
+  }
+
+  .segment {
+    flex: 1;
+    height: 17px;
+    border-radius: 3px;
+    background: var(--lock-segment-pending);
+  }
+
+  .rest {
+    height: 7px;
+  }
+
+  .done {
+    background: #fff;
+  }
+
+  .current {
+    background: var(--feature-highlight);
+  }
+</style>
