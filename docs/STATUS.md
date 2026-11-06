@@ -1,6 +1,6 @@
 # Estado
 
-Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios», «Lo que incluye» y pie.
+Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios», «Lo que incluye», «Plataformas» y pie.
 
 ## Plan por fases
 
@@ -41,7 +41,7 @@ Notas de la base visual:
 - [x] Cómo funciona.
 - [x] Ejercicios.
 - [x] Lo que incluye.
-- [ ] Plataformas.
+- [x] Plataformas.
 - [ ] Preguntas.
 - [ ] Cierre y pie.
 - [ ] Capturas de la app optimizadas en `src/assets` y marcos de móvil (hechas las del hero: Inicio claro y oscuro, y sesión de running).
@@ -91,8 +91,16 @@ Notas de «Lo que incluye»:
 - Las barras de «Te guía con voz» laten en bucle como una voz hablando, como en el diseño original (confirmado; las capturas son estáticas). Por WCAG 2.2.2 lleva `PauseButton` arriba a la derecha de la tarjeta; también se pausa al pasar el ratón. Con `prefers-reduced-motion`, quietas con las alturas de la captura y sin botón.
 - Gráfico de récords (decidido): la línea se dibuja al entrar en pantalla, solo con CSS y ligada al scroll, no con una duración fija de 2,4 s, para no añadir JavaScript en el cliente (`CLAUDE.md` › Stack). Va al ritmo del scroll y se deshace si se vuelve hacia arriba. El relleno se descubre con la línea. Probado en Chromium y WebKit; Firefox, sin `animation-timeline` por defecto, lo muestra ya dibujado. Las propiedades de la animación van sueltas: si se escriben con `animation` abreviado, el minificador mete el timeline dentro y los navegadores descartan la declaración. Mientras la página termine poco después de la sección, en pantallas muy altas el centro del gráfico puede no llegar al centro de la pantalla y quedarse a medio dibujar; las secciones que faltan dan margen de sobra.
 - Rejilla de tres columnas desde 1100 px (por debajo, el widget de la pantalla bloqueada y el texto de voz no caben en un tercio). Entre 640 y 1100 px, tarjetas apiladas a todo el ancho; voz y cuenta mantienen el texto y la pieza en fila. No hay captura a 834.
-- Separación con lo que viene después: la captura deja 142 px (escritorio) y 97 px (móvil) entre las tarjetas y «Plataformas». La sección pone 72 y 48 px; el resto lo pondrá «Plataformas».
+- Separación con lo que viene después: la sección pone 72 px (escritorio) y 48 px (móvil) bajo las tarjetas; el resto hasta «Plataformas» lo pone esa sección.
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios (en escritorio, el texto de «Entreno libre», «Claro u oscuro» y «Cuenta opcional» ocupa una línea menos, y el globo de voz es algo más estrecho; en móvil, las tarjetas acumulan unos 2 px de diferencia de altura); por contraste, la etiqueta usa `intervals-accent`, «81 kg» usa `strength-text` en claro y «Trabajo» se aclara a `#a3b8ff` sobre el widget gris del tema claro.
+
+Notas de «Plataformas»:
+- Componente `Platforms`, con `StoreBadges` en un tamaño grande nuevo (`size="large"`): en la captura, estas insignias son más altas que las del hero. Valores en `docs/BRAND.md` › Plataformas de la landing. E2E en `e2e/platforms.spec.ts`.
+- Separación con «Lo que incluye» medida de nuevo en las capturas: 140 px en escritorio y 88 px en móvil entre el borde de las tarjetas y el de «Plataformas» (la nota anterior hablaba de 142 y 97). La sección pone 68 y 40 px encima, que sumados a los 72 y 48 de «Lo que incluye» dan esas cifras.
+- Debajo deja 72 px en escritorio y 48 px en móvil; el resto hasta «Preguntas» (la captura deja 147 y 93 px hasta el título) lo pondrá esa sección.
+- La sección no tiene ancla: la spec no le da una y la cabecera no la enlaza. Las insignias no son enlaces, como en el hero.
+- Desde 960 px, texto e insignias en fila; por debajo, apilados con el relleno de escritorio desde 640 px. No hay captura a 834.
+- Diferencias que quedan con las capturas (aceptadas): la fuente del sistema hace las insignias unos 3 px más estrechas y el texto en móvil queda unos 2 px más abajo.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.

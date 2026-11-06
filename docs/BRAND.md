@@ -199,6 +199,15 @@ Valores medidos en las capturas de `03-landing`.
 - Tema: 60 px de alto, radio 14 px y borde `feature-card-border`. En cada mitad, tres barras de alturas 38, 100 y 60 % con opacidad .5, 1 y .7: `#2457ff` en la clara y `#5b80ff` en la oscura.
 - Dispositivos: dos móviles de 34 × 61 px y un ordenador de 92 × 61 px, radio 10 px y 10 px de separación, con el logotipo de barras de 15 px en `intervals-chart` (opacidad .5, 1 y .7).
 
+## Plataformas de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+- Tarjeta con `feature-card-bg` y `feature-card-border`, radio 34 px y relleno de 24 px en móvil y 40 px desde 640 px. A 140 px de las tarjetas de «Lo que incluye» en escritorio y a 88 px en móvil.
+- Título en Figtree 800, `letter-spacing: -.035em`: 30/32 px en móvil y 40/43 px desde 640 px. Texto en 16/23 px con `sub`, a 10 px del título en móvil y 9 px en escritorio, con 500 px de ancho máximo.
+- Insignias de tienda en tamaño grande: 52 px de alto en móvil y 60 px desde 640 px, nombre de la tienda a 18 y 21 px, y 12 px de separación. En móvil, 28 px debajo del texto.
+- Desde 960 px, texto e insignias en fila, centrados en vertical; por debajo, apilados. No hay captura a 834.
+
 ## Botón de pausa
 
 No está en las capturas: se añade por accesibilidad (WCAG 2.2.2) a toda animación que se mueva sola más de 5 s.
