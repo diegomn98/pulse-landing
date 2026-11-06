@@ -1,5 +1,7 @@
 # PULSE · Landing
 
+Responde siempre en español.
+
 Landing de lista de espera de PULSE, la app de entrenamiento de intervalos, running y fuerza. Su objetivo es presentar la app y reunir emails antes del lanzamiento. Página casi estática hecha con Astro. La lista de espera la gestionan las Edge Functions del backend común.
 
 Repositorios hermanos: `pulse-web` (app web) y `pulse-supabase` (backend común: esquema, funciones y contrato).
