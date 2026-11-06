@@ -69,9 +69,9 @@ Notas de «Cómo funciona»:
 - Componente `HowItWorks`. Valores en `docs/BRAND.md` › Cómo funciona de la landing. E2E en `e2e/how-it-works.spec.ts`.
 - El gráfico de barras pasa a `TrainingChart`, compartido con «Una sola app»: la cola usa las mismas barras a 52 px (los 5 grupos de fuerza y los 6 tramos de running encajan con «5 ejercicios» y «6 × 400 m»). Etiqueta y título de sección pasan a `.section-eyebrow` y `.section-title` en `global.css`.
 - Las capturas solo muestran «Lo que toca hoy»; la spec enumera las tres tarjetas. Decidido: las tres se suceden en un ciclo de 12 s con giro vertical, solo CSS, y están en el HTML para lectores de pantalla. Con `prefers-reduced-motion`, primera tarjeta fija y widget lleno.
-- «El widget llena sus segmentos al mismo ritmo», interpretado así: el segmento hecho (1 de 4) se vacía al final del ciclo y se vuelve a llenar cuando entra la primera tarjeta. El texto «1 de 4» no cambia.
+- Widget (decidido): solo se llena el primer segmento, en el verde de running, durante los 2 primeros segundos de cada ciclo. El texto «1 de 4» no cambia. Al cargar, el segmento termina de llenarse y no aparece lleno como en la captura.
 - «Empezar» es texto con aspecto de botón, no un botón: en la landing no hace nada.
-- El ciclo se pausa al pasar el ratón por el panel.
+- Desviación del diseño por accesibilidad (WCAG 2.2.2, aprobada): botón de pausa que no está en las capturas, arriba a la derecha de la tarjeta. Componente `PauseButton`, reutilizable para la cinta de Ejercicios: pausa el elemento que indica `aria-controls` con el atributo `data-paused` (regla en `global.css`) y cambia su nombre entre «Pausar animación» y «Reanudar animación». Necesita JavaScript (`src/scripts/animation-pause.ts`): sin él, el botón no aparece. Con `prefers-reduced-motion` no se muestra. El ciclo también se pausa al pasar el ratón por el panel. Valores en `docs/BRAND.md` › Botón de pausa.
 - Entre 640 y 960 px, apilado y a todo el ancho, como «Una sola app». No hay captura a 834.
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios (en móvil, «Un objetivo que cuenta sesiones» cabe en una línea y la sección queda algo más baja); en claro, la etiqueta usa `intervals-accent` por contraste, como en «Una sola app».
 
@@ -104,7 +104,6 @@ Notas de «Cómo funciona»:
 - Dirección de «Contacto»: no aparece en el pie hasta que haya dominio.
 - Responsable y revisión de los textos legales.
 - Texto del error de envío.
-- Control para pausar la cola de «Cómo funciona»: se mueve sola más de 5 s y WCAG 2.2.2 (nivel A) pide poder pausarla. Hoy solo se pausa al pasar el ratón y se detiene con `prefers-reduced-motion`.
 
 ## Contradicciones detectadas
 

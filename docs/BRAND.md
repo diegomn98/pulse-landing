@@ -142,7 +142,21 @@ Valores medidos en las capturas de `03-landing`.
 - Panel: radio 34 px, relleno de 22 px en escritorio y 14 px en móvil, 15 px entre tarjeta y widget.
 - Tarjeta de la cola: gradiente y sombra de tarjeta de su tipo, radio 26 px y relleno de 20 px; 320 px de alto mínimo en escritorio. Etiqueta de 30 px en 12 px 800 con punto blanco; nombre en Figtree 30 px 800; detalle en 15/20 px; las barras de «Una sola app» a 52 px de alto; «Empezar» en píldora blanca de 50 px con Figtree 16 px 800.
 - Widget: radio 22 px; «1» en Figtree 36 px 800; cuatro segmentos de 12 px con radio 6 px y 8 px de separación, sobre `track`.
-- Ciclo de la cola: 12 s, 4 s por tarjeta. Cada tarjeta entra girando desde abajo (`rotateX(-90deg)` a reposo) mientras la anterior sale girando hacia arriba (`rotateX(90deg)`), en 0,6 s con la curva `modal` y perspectiva de 1400 px. El segmento hecho se llena (`scaleX`) cuando vuelve la primera tarjeta. Se pausa al pasar el ratón. Con `prefers-reduced-motion`, primera tarjeta fija y segmento lleno.
+- Ciclo de la cola: 12 s, 4 s por tarjeta. Cada tarjeta entra girando desde abajo (`rotateX(-90deg)` a reposo) mientras la anterior sale girando hacia arriba (`rotateX(90deg)`), en 0,6 s con la curva `modal` y perspectiva de 1400 px. Solo se llena el primer segmento (`scaleX`, `ease-out`), durante los 2 primeros segundos de cada ciclo, cuando entra la primera tarjeta; al final del ciclo se desvanece. Se pausa al pasar el ratón y con el botón de pausa. Con `prefers-reduced-motion`, primera tarjeta fija, segmento lleno y sin botón de pausa.
+
+## Botón de pausa
+
+No está en las capturas: se añade por accesibilidad (WCAG 2.2.2) a toda animación que se mueva sola más de 5 s.
+
+| Propiedad | Por defecto | En la cola de «Cómo funciona» |
+|---|---|---|
+| `--pause-bg` fondo | `pill` | `queue-pill-bg` |
+| `--pause-border` borde | `card-border` | `queue-pill-border` |
+| `--pause-color` icono | `ink` | `#ffffff` |
+| `--pause-focus` anillo de foco | `intervals-accent` | `#ffffff` |
+
+- Círculo de 30 px con borde de 1 px y zona pulsable ampliada a 44 px. Icono de pausa o de reproducir de 10 px.
+- En la cola, arriba a la derecha de la tarjeta, alineado con su etiqueta; no gira con ella.
 
 ## Tema
 
