@@ -39,7 +39,7 @@ Comprueba los nombres exactos en `../pulse-imagenes/INDICE.md`.
 ### Cabecera
 - Logo «pulse».
 - Escritorio: enlaces a las secciones «Los tres tipos», «Cómo funciona», «Ejercicios» y «Preguntas».
-- Botón de cambio de tema y botón «Apúntate», que lleva al formulario del hero.
+- Botón de cambio de tema y botón «Apúntate»: enlace a `#apuntate` que lleva al formulario del hero y pone el foco en el campo de email.
 - Móvil: logo, tema y «Apúntate».
 
 ### Hero
@@ -101,7 +101,7 @@ Título «Preguntas» y cuatro tarjetas fijas, con la pregunta como encabezado y
 
 ## 5. Formulario de la lista de espera
 
-Hay un solo formulario, en el hero. El botón del cierre lleva a él (sección 4).
+Hay un solo formulario, en el hero. Los botones «Apúntate» de la cabecera y «Apuntarme a la lista» del cierre llevan a él y ponen el foco en el campo de email (sección 4).
 
 | Campo | Comportamiento |
 |---|---|
