@@ -131,8 +131,6 @@ Ninguna abierta.
 ## Riesgos
 
 - En WebKit de Playwright para Windows, Figtree variable se ve en su peso más fino (también en el hero). En Chromium se ve bien. Revisar en Safari real en la fase 6.
-
-- El E2E «gives the header a backdrop only once the page scrolls (motion: reduce)» de `e2e/landing.spec.ts` falla de vez en cuando en Chromium a 375 y 390 px (3 de 48 repeticiones), también antes de «Lo que incluye». Pendiente de revisar.
 - La fase 4 depende de que `pulse-supabase` tenga lista la función `join-waitlist`.
 - `npm audit` avisa de una vulnerabilidad moderada en `minimatch`, que solo usan ESLint y `typescript-eslint` en desarrollo. La única solución que ofrece es bajar a ESLint 9; se revisa cuando publiquen la corrección.
 - Las capturas de la app para los móviles salen del diseño; habrá que sustituirlas por capturas reales cuando exista la app.

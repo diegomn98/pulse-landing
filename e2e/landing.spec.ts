@@ -66,7 +66,8 @@ for (const reducedMotion of ['no-preference', 'reduce'] as const) {
 
     await expect.poll(backdropOpacity).toBe('0');
 
-    await page.mouse.wheel(0, 400);
+    // Chromium sometimes drops a synthetic wheel on a still page without wheel listeners.
+    await page.keyboard.press('PageDown');
 
     await expect.poll(backdropOpacity).toBe('1');
   });
