@@ -1,6 +1,6 @@
 # Estado
 
-Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona» y pie.
+Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios» y pie.
 
 ## Plan por fases
 
@@ -39,7 +39,7 @@ Notas de la base visual:
 - [x] Hero (con el formulario solo maquetado).
 - [x] Una sola app.
 - [x] Cómo funciona.
-- [ ] Ejercicios.
+- [x] Ejercicios.
 - [ ] Lo que incluye.
 - [ ] Plataformas.
 - [ ] Preguntas.
@@ -74,6 +74,16 @@ Notas de «Cómo funciona»:
 - Desviación del diseño por accesibilidad (WCAG 2.2.2, aprobada): botón de pausa que no está en las capturas, arriba a la derecha de la tarjeta. Componente `PauseButton`, reutilizable para la cinta de Ejercicios: pausa el elemento que indica `aria-controls` con el atributo `data-paused` (regla en `global.css`) y cambia su nombre entre «Pausar animación» y «Reanudar animación». Necesita JavaScript (`src/scripts/animation-pause.ts`), permitido en `CLAUDE.md` › Stack: sin él, el botón no aparece. Con `prefers-reduced-motion` no se muestra. El ciclo también se pausa al pasar el ratón por el panel. Valores en `docs/BRAND.md` › Botón de pausa.
 - Entre 640 y 960 px, apilado y a todo el ancho, como «Una sola app». No hay captura a 834.
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios (en móvil, «Un objetivo que cuenta sesiones» cabe en una línea y la sección queda algo más baja); en claro, la etiqueta usa `intervals-accent` por contraste, como en «Una sola app».
+
+Notas de «Ejercicios»:
+- Componentes: `Exercises` (sección), `ExerciseSheet` (móvil con la ficha de Press banca, en HTML dentro de `PhoneFrame`), `NewExerciseCard` y `ExerciseTicker`. Valores en `docs/BRAND.md` › Ejercicios de la landing. E2E en `e2e/exercises.spec.ts`.
+- La ficha y la tarjeta son contenido de ejemplo: su texto está en el HTML para lectores de pantalla, sin encabezados ni botones («Guardar en mis ejercicios» es texto con aspecto de botón, como «Empezar»).
+- La etiqueta usa `strength-text` y no el naranja claro de la captura en claro, por contraste (mismo criterio que en las secciones anteriores).
+- Cinta (decidido sin captura que lo muestre): la primera fila va hacia la izquierda y la segunda hacia la derecha, a 50 s por vuelta. Cada fila repite su lista tres veces; solo la primera copia llega a los lectores de pantalla.
+- Desviación por accesibilidad (WCAG 2.2.2): botón de pausa (`PauseButton`) debajo de la cinta, alineado a la derecha del contenido. No está en las capturas. La cinta también se pausa al pasar el ratón.
+- Entre 640 y 960 px, apilado, con el móvil centrado y la tarjeta 168 px a su izquierda. No hay captura a 834.
+- Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios y a 375 px el título ocupa tres líneas; dentro de la ficha, los textos pequeños usan la fuente del sistema y se ven algo distintos; la inclinación y el brillo naranja del móvil son aproximados.
+- Pendiente de confirmar: en la cinta de la captura hay dos píldoras cortadas por el borde («Dom…» en la primera fila y otra sin texto visible en la segunda). No se han incluido porque su nombre no se lee entero.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.

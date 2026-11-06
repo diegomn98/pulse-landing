@@ -144,6 +144,27 @@ Valores medidos en las capturas de `03-landing`.
 - Widget: radio 22 px; «1» en Figtree 36 px 800; cuatro segmentos de 12 px con radio 6 px y 8 px de separación, sobre `track`.
 - Ciclo de la cola: 12 s, 4 s por tarjeta. Cada tarjeta entra girando desde abajo (`rotateX(-90deg)` a reposo) mientras la anterior sale girando hacia arriba (`rotateX(90deg)`), en 0,6 s con la curva `modal` y perspectiva de 1400 px. Solo se llena el primer segmento (`scaleX`, `ease-out`), durante los 2 primeros segundos de cada ciclo, cuando entra la primera tarjeta; al final del ciclo se desvanece. Se pausa al pasar el ratón y con el botón de pausa. Con `prefers-reduced-motion`, primera tarjeta fija, segmento lleno y sin botón de pausa.
 
+## Ejercicios de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `exercise-phone-shadow` brillo naranja del móvil, sobre `phone-shadow` | `0 60px 110px -16px rgba(194, 86, 10, .3)` | `0 60px 110px -16px rgba(194, 86, 10, .4)` |
+| `exercise-screen-bg` fondo de la pantalla de la ficha | `#f7f9fb` | `#080b13` |
+| `exercise-sketch` dibujo de la barra en el hueco de foto | `#b2b9c3` | `rgba(255, 255, 255, .2)` |
+| `new-exercise-bg` tarjeta «Ejercicio nuevo» (oscura en los dos temas) | `#3e414b` | `#131620` |
+| `new-exercise-border` | `rgba(255, 255, 255, .12)` | `rgba(255, 255, 255, .15)` |
+| `new-exercise-shadow` | `0 30px 60px -24px rgba(14, 23, 38, .5)` | `0 30px 60px -24px rgba(0, 0, 0, .6)` |
+| `new-exercise-chip` | `rgba(255, 255, 255, .1)` | igual |
+| `new-exercise-accent` etiqueta y cursor | `#f2902f` | igual |
+
+- Etiqueta con `strength-text`. Título y texto con el estilo de «Una sola app» y del hero (`nav-link`, 17/26 px en móvil y 20/31 px desde 640 px, 530 px de ancho máximo). Dos columnas desde 960 px, separadas 64 px y centradas en vertical.
+- Ventajas: icono de 28 px con radio 8 px, fondo `strength-tint` y glifo de 12 px en `strength-chart`; título en `ink` 700 y texto en `sub`, 15/22 px en móvil y 16/23 px desde 640 px; 12 px entre ventajas.
+- Móvil de la ficha: marco de 300 px de ancho (260 px por debajo de 640 px), inclinado con `perspective(1400px) rotateY(14deg) rotateZ(-1deg)`; pantalla de 640 px de alto maquetada en HTML con `photo`, `card`, `pill`, `strength-card` y los colores de fuerza. En escritorio, 168 px a la derecha del inicio de la columna.
+- Tarjeta «Ejercicio nuevo»: 294 px de ancho (262 px en móvil), radio 22 px, relleno de 18/16 px; nombre en Figtree 19 px 800; chips de 26 px en 12 px 700; botón blanco de 40 px con texto `#0e1726` 14 px 700. En escritorio empieza en el borde de la columna, al 57 % de la altura del móvil; en móvil, al 65 % y 50 px a la izquierda del móvil.
+- Cinta: dos filas a todo el ancho, separadas 12 px, con un fundido del 10 % en cada lado (`mask-image`). Píldoras de 48 px con fondo `card`, borde `card-border`, texto 15 px 700 y punto de 8 px en el color de gráficos de su tipo; 10 px entre píldoras. 100 px por debajo del móvil (96 px desde 960 px). Se mueven a velocidad constante (50 s por vuelta), la primera fila hacia la izquierda y la segunda hacia la derecha; se pausan al pasar el ratón y con el botón de pausa. Con `prefers-reduced-motion`, quietas y sin botón.
+
 ## Botón de pausa
 
 No está en las capturas: se añade por accesibilidad (WCAG 2.2.2) a toda animación que se mueva sola más de 5 s.
@@ -157,6 +178,7 @@ No está en las capturas: se añade por accesibilidad (WCAG 2.2.2) a toda animac
 
 - Círculo de 30 px con borde de 1 px y zona pulsable ampliada a 44 px. Icono de pausa o de reproducir de 10 px.
 - En la cola, arriba a la derecha de la tarjeta, alineado con su etiqueta; no gira con ella.
+- En la cinta de Ejercicios, con los valores por defecto, 12 px debajo de la cinta y alineado con el borde derecho del contenido.
 
 ## Tema
 
