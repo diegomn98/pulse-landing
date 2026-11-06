@@ -99,6 +99,7 @@ Notas de «Plataformas»:
 - Separación con «Lo que incluye» medida de nuevo en las capturas: 140 px en escritorio y 88 px en móvil entre el borde de las tarjetas y el de «Plataformas» (la nota anterior hablaba de 142 y 97). La sección pone 68 y 40 px encima, que sumados a los 72 y 48 de «Lo que incluye» dan esas cifras.
 - Debajo deja 72 px en escritorio y 48 px en móvil; el resto hasta «Preguntas» (la captura deja 147 y 93 px hasta el título) lo pondrá esa sección.
 - La sección no tiene ancla: la spec no le da una y la cabecera no la enlaza. Las insignias no son enlaces, como en el hero.
+- Tercera insignia «Próximamente en Web», pedida por Diego aunque no está en las capturas ni en `docs/LANDING_SPEC.md` (que habla solo de App Store y Google Play; falta actualizarla). Va en `StoreBadges`, así que sale en el hero y en «Plataformas». Desde 640 px las tres caben en una fila; en móvil, «Web» pasa a una segunda (la tarjeta de «Plataformas» crece de 273 a 337 px y el hero, unos 54 px).
 - Desde 960 px, texto e insignias en fila; por debajo, apilados con el relleno de escritorio desde 640 px. No hay captura a 834.
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema hace las insignias unos 3 px más estrechas y el texto en móvil queda unos 2 px más abajo.
 

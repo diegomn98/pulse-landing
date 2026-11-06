@@ -205,7 +205,7 @@ Valores medidos en las capturas de `03-landing`.
 
 - Tarjeta con `feature-card-bg` y `feature-card-border`, radio 34 px y relleno de 24 px en móvil y 40 px desde 640 px. A 140 px de las tarjetas de «Lo que incluye» en escritorio y a 88 px en móvil.
 - Título en Figtree 800, `letter-spacing: -.035em`: 30/32 px en móvil y 40/43 px desde 640 px. Texto en 16/23 px con `sub`, a 10 px del título en móvil y 9 px en escritorio, con 500 px de ancho máximo.
-- Insignias de tienda en tamaño grande: 52 px de alto en móvil y 60 px desde 640 px, nombre de la tienda a 18 y 21 px, y 12 px de separación. En móvil, 28 px debajo del texto.
+- Insignias de tienda en tamaño grande: 52 px de alto en móvil y 60 px desde 640 px, nombre de la tienda a 18 y 21 px, y 12 px de separación. Tres insignias (App Store, Google Play y Web), como en el hero; en móvil, la tercera pasa a una segunda fila y el grupo queda 28 px debajo del texto.
 - Desde 960 px, texto e insignias en fila, centrados en vertical; por debajo, apilados. No hay captura a 834.
 
 ## Botón de pausa
