@@ -60,10 +60,10 @@ Notas del hero:
 
 Notas de «Una sola app»:
 - Componente `TrainingTypes` con el brillo violeta que quedaba pendiente del hero. Valores en `docs/BRAND.md` › Una sola app de la landing. E2E en `e2e/training-types.spec.ts`.
-- Tres columnas desde 960 px; por debajo, apiladas. No hay captura a 834: allí las tarjetas ocupan todo el ancho y las barras se ensanchan.
-- La etiqueta «Una sola app» usa `intervals-accent` (`#2457ff` en claro) y no el `#8aa4ff` de la captura clara, que da un contraste de 2,2:1. Mismo criterio que el texto de ejemplo del campo.
-- Los textos de las tarjetas son blancos opacos. En la captura, la etiqueta y el texto llevan algo de transparencia, pero el blanco puro sobre el inicio de los gradientes ya está justo en 4,5:1 y cualquier transparencia lo deja por debajo.
-- Diferencias que quedan con las capturas: la fuente del sistema corta las líneas en otros sitios (en móvil, la captura parte más líneas de la lista y las tarjetas son algo más altas); el brillo violeta en móvil se ha estimado, porque las tarjetas lo tapan casi entero en la captura.
+- Tres columnas desde 960 px; por debajo, apiladas. No hay captura a 834: allí las tarjetas ocupan todo el ancho y las barras se ensanchan (aprobado).
+- La etiqueta «Una sola app» usa `intervals-accent` (`#2457ff` en claro) y no el `#8aa4ff` de la captura clara, que da un contraste de 2,2:1. Mismo criterio que el texto de ejemplo del campo (aprobado).
+- Los textos de las tarjetas son blancos opacos. En la captura, la etiqueta y el texto llevan algo de transparencia, pero el blanco puro sobre el inicio de los gradientes ya está justo en 4,5:1 y cualquier transparencia lo deja por debajo (aprobado).
+- Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios (en móvil, la captura parte más líneas de la lista y las tarjetas son algo más altas); el brillo violeta en móvil se ha estimado, porque las tarjetas lo tapan casi entero en la captura.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.
