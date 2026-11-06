@@ -121,6 +121,29 @@ Valores medidos en las capturas de `03-landing`.
 - Barras blancas con radio 3 px y separación de 3 px; las de descanso, al 38 %. Intervalos: 28 barras que alternan trabajo y descanso. Running: 15 tramos. Fuerza: grupos de 4, 4, 3, 3 y 3 series de altura decreciente, separados 20 px.
 - El brillo violeta es una elipse pegada al borde derecho, a la altura de las tarjetas, que sube hasta el hero.
 
+## Cómo funciona de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `how-border` borde de los iconos y del widget | `rgba(14, 23, 38, .08)` | `rgba(255, 255, 255, .18)` |
+| `queue-panel-bg` panel de la cola | `#ffffff` | `rgba(255, 255, 255, .035)` |
+| `queue-panel-border` | `rgba(14, 23, 38, .07)` | `rgba(255, 255, 255, .13)` |
+| `queue-pill-bg` etiqueta de la tarjeta | `rgba(255, 255, 255, .14)` | igual |
+| `queue-pill-border` | `rgba(255, 255, 255, .26)` | igual |
+| `intervals-deep` · `running-deep` · `strength-deep` texto de «Empezar» | `#1a3fcc` · `#0f5f2d` · `#8a3d00` | igual |
+| `week-widget-bg` widget «Esta semana» | `#f4f6f9` | `rgba(255, 255, 255, .09)` |
+| `week-segment-done` segmento hecho | `#34c46e` | igual |
+| `week-segment-current` borde del segmento siguiente | `rgba(255, 255, 255, .62)` | igual |
+
+- Etiqueta y título con el estilo de «Una sola app», pero con 22 px entre los dos. Dos columnas iguales desde 960 px, separadas 64 px y centradas en vertical.
+- Puntos: icono de 46 px con radio 14 px, fondo `pill` y glifo de 22 px; título en 18/24 px 700 y texto en 15/23 px con `sub`. 22 px entre puntos.
+- Panel: radio 34 px, relleno de 22 px en escritorio y 14 px en móvil, 15 px entre tarjeta y widget.
+- Tarjeta de la cola: gradiente y sombra de tarjeta de su tipo, radio 26 px y relleno de 20 px; 320 px de alto mínimo en escritorio. Etiqueta de 30 px en 12 px 800 con punto blanco; nombre en Figtree 30 px 800; detalle en 15/20 px; las barras de «Una sola app» a 52 px de alto; «Empezar» en píldora blanca de 50 px con Figtree 16 px 800.
+- Widget: radio 22 px; «1» en Figtree 36 px 800; cuatro segmentos de 12 px con radio 6 px y 8 px de separación, sobre `track`.
+- Ciclo de la cola: 12 s, 4 s por tarjeta. Cada tarjeta entra girando desde abajo (`rotateX(-90deg)` a reposo) mientras la anterior sale girando hacia arriba (`rotateX(90deg)`), en 0,6 s con la curva `modal` y perspectiva de 1400 px. El segmento hecho se llena (`scaleX`) cuando vuelve la primera tarjeta. Se pausa al pasar el ratón. Con `prefers-reduced-motion`, primera tarjeta fija y segmento lleno.
+
 ## Tema
 
 - Tres opciones: automático (sigue `prefers-color-scheme`), claro y oscuro.

@@ -1,6 +1,6 @@
 # Estado
 
-Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app» y pie.
+Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona» y pie.
 
 ## Plan por fases
 
@@ -38,7 +38,7 @@ Notas de la base visual:
 ### Fase 2 · Secciones
 - [x] Hero (con el formulario solo maquetado).
 - [x] Una sola app.
-- [ ] Cómo funciona.
+- [x] Cómo funciona.
 - [ ] Ejercicios.
 - [ ] Lo que incluye.
 - [ ] Plataformas.
@@ -64,6 +64,16 @@ Notas de «Una sola app»:
 - La etiqueta «Una sola app» usa `intervals-accent` (`#2457ff` en claro) y no el `#8aa4ff` de la captura clara, que da un contraste de 2,2:1. Mismo criterio que el texto de ejemplo del campo (aprobado).
 - Los textos de las tarjetas son blancos opacos. En la captura, la etiqueta y el texto llevan algo de transparencia, pero el blanco puro sobre el inicio de los gradientes ya está justo en 4,5:1 y cualquier transparencia lo deja por debajo (aprobado).
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios (en móvil, la captura parte más líneas de la lista y las tarjetas son algo más altas); el brillo violeta en móvil se ha estimado, porque las tarjetas lo tapan casi entero en la captura.
+
+Notas de «Cómo funciona»:
+- Componente `HowItWorks`. Valores en `docs/BRAND.md` › Cómo funciona de la landing. E2E en `e2e/how-it-works.spec.ts`.
+- El gráfico de barras pasa a `TrainingChart`, compartido con «Una sola app»: la cola usa las mismas barras a 52 px (los 5 grupos de fuerza y los 6 tramos de running encajan con «5 ejercicios» y «6 × 400 m»). Etiqueta y título de sección pasan a `.section-eyebrow` y `.section-title` en `global.css`.
+- Las capturas solo muestran «Lo que toca hoy»; la spec enumera las tres tarjetas. Decidido: las tres se suceden en un ciclo de 12 s con giro vertical, solo CSS, y están en el HTML para lectores de pantalla. Con `prefers-reduced-motion`, primera tarjeta fija y widget lleno.
+- «El widget llena sus segmentos al mismo ritmo», interpretado así: el segmento hecho (1 de 4) se vacía al final del ciclo y se vuelve a llenar cuando entra la primera tarjeta. El texto «1 de 4» no cambia.
+- «Empezar» es texto con aspecto de botón, no un botón: en la landing no hace nada.
+- El ciclo se pausa al pasar el ratón por el panel.
+- Entre 640 y 960 px, apilado y a todo el ancho, como «Una sola app». No hay captura a 834.
+- Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios (en móvil, «Un objetivo que cuenta sesiones» cabe en una línea y la sección queda algo más baja); en claro, la etiqueta usa `intervals-accent` por contraste, como en «Una sola app».
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.
@@ -94,12 +104,15 @@ Notas de «Una sola app»:
 - Dirección de «Contacto»: no aparece en el pie hasta que haya dominio.
 - Responsable y revisión de los textos legales.
 - Texto del error de envío.
+- Control para pausar la cola de «Cómo funciona»: se mueve sola más de 5 s y WCAG 2.2.2 (nivel A) pide poder pausarla. Hoy solo se pausa al pasar el ratón y se detiene con `prefers-reduced-motion`.
 
 ## Contradicciones detectadas
 
 Ninguna abierta.
 
 ## Riesgos
+
+- En WebKit de Playwright para Windows, Figtree variable se ve en su peso más fino (también en el hero). En Chromium se ve bien. Revisar en Safari real en la fase 6.
 
 - La fase 4 depende de que `pulse-supabase` tenga lista la función `join-waitlist`.
 - `npm audit` avisa de una vulnerabilidad moderada en `minimatch`, que solo usan ESLint y `typescript-eslint` en desarrollo. La única solución que ofrece es bajar a ESLint 9; se revisa cuando publiquen la corrección.
