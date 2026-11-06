@@ -1,6 +1,6 @@
 # Estado
 
-Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero y pie.
+Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app» y pie.
 
 ## Plan por fases
 
@@ -37,7 +37,7 @@ Notas de la base visual:
 
 ### Fase 2 · Secciones
 - [x] Hero (con el formulario solo maquetado).
-- [ ] Una sola app.
+- [x] Una sola app.
 - [ ] Cómo funciona.
 - [ ] Ejercicios.
 - [ ] Lo que incluye.
@@ -57,6 +57,13 @@ Notas del hero:
 - Marco del móvil con la franja inferior y el reflejo en oscuro medidos en las capturas (`docs/BRAND.md` › Hero de la landing). El reflejo es una banda vertical, no diagonal.
 - Diferencias que quedan con las capturas (aceptadas): el texto usa la fuente del sistema (los cortes de línea del párrafo cambian según el sistema); el brillo violeta de la derecha pertenece a «Una sola app» y llega con esa sección; el texto de ejemplo del campo es más oscuro por contraste; los botones de plataforma amplían su área táctil sin cambiar su aspecto.
 - Textos alternativos de las pantallas aprobados. El LCP de las pantallas en diferido se mide en la fase 6.
+
+Notas de «Una sola app»:
+- Componente `TrainingTypes` con el brillo violeta que quedaba pendiente del hero. Valores en `docs/BRAND.md` › Una sola app de la landing. E2E en `e2e/training-types.spec.ts`.
+- Tres columnas desde 960 px; por debajo, apiladas. No hay captura a 834: allí las tarjetas ocupan todo el ancho y las barras se ensanchan.
+- La etiqueta «Una sola app» usa `intervals-accent` (`#2457ff` en claro) y no el `#8aa4ff` de la captura clara, que da un contraste de 2,2:1. Mismo criterio que el texto de ejemplo del campo.
+- Los textos de las tarjetas son blancos opacos. En la captura, la etiqueta y el texto llevan algo de transparencia, pero el blanco puro sobre el inicio de los gradientes ya está justo en 4,5:1 y cualquier transparencia lo deja por debajo.
+- Diferencias que quedan con las capturas: la fuente del sistema corta las líneas en otros sitios (en móvil, la captura parte más líneas de la lista y las tarjetas son algo más altas); el brillo violeta en móvil se ha estimado, porque las tarjetas lo tapan casi entero en la captura.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.

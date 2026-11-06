@@ -104,6 +104,23 @@ Valores medidos en las capturas de `03-landing`.
 - El reflejo de la pantalla es una banda vertical en el lado izquierdo, igual en toda la altura y en los dos móviles, solo en oscuro.
 - Las barras del pedestal usan los colores de gráficos del tema oscuro en los dos temas, como en las capturas.
 
+## Una sola app de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `types-glow` brillo violeta de la derecha | `rgba(124, 58, 237, .06)` | `rgba(124, 58, 237, .17)` |
+| `intervals-card-shadow` | `0 36px 80px -24px rgba(36, 87, 255, .7)` | igual |
+| `running-card-shadow` | `0 36px 80px -24px rgba(21, 128, 61, .7)` | igual |
+| `strength-card-shadow` | `0 36px 80px -24px rgba(194, 86, 10, .7)` | igual |
+
+- Etiqueta en 12 px 800, mayúsculas, con `intervals-accent`. Título en Figtree 800, de 36 px en móvil a 56 px en escritorio, interlineado 1,02 y `letter-spacing: -.04em`.
+- Tarjetas con el gradiente de su tipo, radio 28 px, relleno de 24 px y texto blanco. Separación de 16 px en escritorio y 20 px en móvil.
+- Dentro de la tarjeta: etiqueta en 11 px 800 en mayúsculas, nombre en Figtree 32 px 800, gráfico de barras de 64 px de alto, texto en 16/24 px y lista en 15/20 px 600 con un check.
+- Barras blancas con radio 3 px y separación de 3 px; las de descanso, al 38 %. Intervalos: 28 barras que alternan trabajo y descanso. Running: 15 tramos. Fuerza: grupos de 4, 4, 3, 3 y 3 series de altura decreciente, separados 20 px.
+- El brillo violeta es una elipse pegada al borde derecho, a la altura de las tarjetas, que sube hasta el hero.
+
 ## Tema
 
 - Tres opciones: automático (sigue `prefers-color-scheme`), claro y oscuro.
