@@ -158,12 +158,13 @@ Valores medidos en las capturas de `03-landing`.
 | `new-exercise-shadow` | `0 30px 60px -24px rgba(14, 23, 38, .5)` | `0 30px 60px -24px rgba(0, 0, 0, .6)` |
 | `new-exercise-chip` | `rgba(255, 255, 255, .1)` | igual |
 | `new-exercise-accent` etiqueta y cursor | `#f2902f` | igual |
+| `ticker-pill-border` borde de las píldoras de la cinta | `rgba(14, 23, 38, .08)` | `rgba(255, 255, 255, .09)` |
 
 - Etiqueta con `strength-text`. Título y texto con el estilo de «Una sola app» y del hero (`nav-link`, 17/26 px en móvil y 20/31 px desde 640 px, 530 px de ancho máximo). Dos columnas desde 960 px, separadas 64 px y centradas en vertical.
 - Ventajas: icono de 28 px con radio 8 px, fondo `strength-tint` y glifo de 12 px en `strength-chart`; título en `ink` 700 y texto en `sub`, 15/22 px en móvil y 16/23 px desde 640 px; 12 px entre ventajas.
 - Móvil de la ficha: marco de 300 px de ancho (260 px por debajo de 640 px), inclinado con `perspective(1400px) rotateY(14deg) rotateZ(-1deg)`; pantalla de 640 px de alto maquetada en HTML con `photo`, `card`, `pill`, `strength-card` y los colores de fuerza. En escritorio, 168 px a la derecha del inicio de la columna.
 - Tarjeta «Ejercicio nuevo»: 294 px de ancho (262 px en móvil), radio 22 px, relleno de 18/16 px; nombre en Figtree 19 px 800; chips de 26 px en 12 px 700; botón blanco de 40 px con texto `#0e1726` 14 px 700. En escritorio empieza en el borde de la columna, al 57 % de la altura del móvil; en móvil, al 65 % y 50 px a la izquierda del móvil.
-- Cinta: dos filas a todo el ancho, separadas 12 px, con un fundido del 10 % en cada lado (`mask-image`). Píldoras de 48 px con fondo `card`, borde `card-border`, texto 15 px 700 y punto de 8 px en el color de gráficos de su tipo; 10 px entre píldoras. 100 px por debajo del móvil (96 px desde 960 px). Las píldoras «+ Remo en anillas» y «+ Crea el tuyo» son blancas con texto `#0e1726` y un «+» de 11 px en lugar del punto, en los dos temas. Se mueven a velocidad constante, la primera fila hacia la izquierda (60 s por vuelta) y la segunda hacia la derecha (70 s); se pausan al pasar el ratón y con el botón de pausa. Con `prefers-reduced-motion`, quietas y sin botón.
+- Cinta: dos filas a todo el ancho, separadas 12 px, con un fundido del 10 % en cada lado (`mask-image`). Píldoras de 48 px con fondo `card`, borde `ticker-pill-border`, texto 15 px 700 y punto de 8 px en el color de gráficos de su tipo; 10 px entre píldoras. 100 px por debajo del móvil (96 px desde 960 px). Las píldoras «+ Remo en anillas» y «+ Crea el tuyo» van invertidas, con fondo `ink`, texto `ink-inverse`, sin borde y con un «+» de 11 px en lugar del punto (oscuras en claro y blancas en oscuro). Se mueven a velocidad constante, la primera fila hacia la izquierda (60 s por vuelta) y la segunda hacia la derecha (70 s); se pausan al pasar el ratón y con el botón de pausa. Con `prefers-reduced-motion`, quietas y sin botón.
 
 ## Botón de pausa
 

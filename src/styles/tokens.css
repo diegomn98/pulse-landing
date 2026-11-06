@@ -145,6 +145,10 @@
     light-dark(rgba(14, 23, 38, 0.5), rgba(0, 0, 0, 0.6));
   --new-exercise-chip: rgba(255, 255, 255, 0.1);
   --new-exercise-accent: #f2902f;
+  --ticker-pill-border: light-dark(
+    rgba(14, 23, 38, 0.08),
+    rgba(255, 255, 255, 0.09)
+  );
 
   --font-text:
     -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui,
