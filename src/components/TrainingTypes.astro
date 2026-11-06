@@ -1,37 +1,14 @@
 ---
-interface Bar {
-  height: number;
-  muted?: boolean;
-}
+import TrainingChart from './TrainingChart.astro';
+import type { TrainingType } from './training-type';
 
 interface TrainingTypeCard {
-  type: 'intervals' | 'running' | 'strength';
+  type: TrainingType;
   kicker: string;
   name: string;
   description: string;
   features: string[];
-  barGroups: Bar[][];
 }
-
-const tall: Bar = { height: 64 };
-const rest = (height: number): Bar => ({ height, muted: true });
-
-const intervalsBars = Array.from({ length: 28 }, (_, index) =>
-  index % 2 === 1 ? tall : rest(index % 14 === 0 ? 35 : 22),
-);
-
-const runningBars = [
-  rest(32),
-  rest(32),
-  ...Array.from({ length: 12 }, (_, index) =>
-    index % 2 === 0 ? tall : rest(15),
-  ),
-  rest(32),
-];
-
-const strengthBarGroups = [4, 4, 3, 3, 3].map((sets) =>
-  [59, 55, 51, 47].slice(0, sets).map((height) => ({ height })),
-);
 
 const cards: TrainingTypeCard[] = [
   {
@@ -45,7 +22,6 @@ const cards: TrainingTypeCard[] = [
       'Ves el siguiente ejercicio de un vistazo',
       'Intervalos libres que se guardan como rutina',
     ],
-    barGroups: [intervalsBars],
   },
   {
     type: 'running',
@@ -58,7 +34,6 @@ const cards: TrainingTypeCard[] = [
       'Ritmo y distancia en directo',
       'Tu carrera libre, convertida en rutina',
     ],
-    barGroups: [runningBars],
   },
   {
     type: 'strength',
@@ -71,7 +46,6 @@ const cards: TrainingTypeCard[] = [
       'Si la máquina está ocupada, la cambias',
       'Récords y progreso de cada ejercicio',
     ],
-    barGroups: strengthBarGroups,
   },
 ];
 ---
@@ -79,30 +53,19 @@ const cards: TrainingTypeCard[] = [
 <section id="tipos" class="types" aria-labelledby="types-title">
   <div class="glow" aria-hidden="true"></div>
   <div class="page-width">
-    <p class="eyebrow">Una sola app</p>
-    <h2 id="types-title" class="title">
+    <p class="section-eyebrow">Una sola app</p>
+    <h2 id="types-title" class="section-title">
       <span>Tres formas de entrenar.</span> <span>Cada una con su color.</span>
     </h2>
     <ul class="cards">
-      {cards.map(({ type, kicker, name, description, features, barGroups }) => (
+      {cards.map(({ type, kicker, name, description, features }) => (
         <li class:list={['card', type]}>
           <article aria-labelledby={`${type}-name`}>
             <p class="kicker">{kicker}</p>
             <h3 id={`${type}-name`} class="name">
               {name}
             </h3>
-            <div class="chart" aria-hidden="true">
-              {barGroups.map((group) => (
-                <span class="bar-group" style={{ '--bars': group.length }}>
-                  {group.map(({ height, muted }) => (
-                    <span
-                      class:list={['bar', { muted }]}
-                      style={{ height: `${height}px` }}
-                    />
-                  ))}
-                </span>
-              ))}
-            </div>
+            <TrainingChart type={type} />
             <p class="description">{description}</p>
             <ul class="features">
               {features.map((feature) => (
@@ -140,22 +103,8 @@ const cards: TrainingTypeCard[] = [
     pointer-events: none;
   }
 
-  .eyebrow {
-    color: var(--intervals-accent);
-    font-size: 12px;
-    font-weight: 800;
-    line-height: 16px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .title {
+  .section-title {
     margin-top: 8px;
-    font-family: var(--font-display);
-    font-size: clamp(36px, 3.5vw + 22.5px, 56px);
-    font-weight: 800;
-    line-height: 1.02;
-    letter-spacing: -0.04em;
   }
 
   .cards {
@@ -187,6 +136,9 @@ const cards: TrainingTypeCard[] = [
   }
 
   article {
+    --chart-height: 64px;
+    --chart-group-gap: 20px;
+
     padding: 25px 24px 28px;
   }
 
@@ -199,37 +151,12 @@ const cards: TrainingTypeCard[] = [
   }
 
   .name {
-    margin-top: 16px;
+    margin-block: 16px 17px;
     font-family: var(--font-display);
     font-size: 32px;
     font-weight: 800;
     line-height: 1.05;
     letter-spacing: -0.03em;
-  }
-
-  .chart {
-    display: flex;
-    gap: 20px;
-    align-items: flex-end;
-    height: 64px;
-    margin-top: 17px;
-  }
-
-  .bar-group {
-    display: flex;
-    flex: var(--bars) 1 calc((var(--bars) - 1) * 3px);
-    gap: 3px;
-    align-items: flex-end;
-  }
-
-  .bar {
-    flex: 1;
-    border-radius: 3px;
-    background: #fff;
-  }
-
-  .bar.muted {
-    opacity: 0.38;
   }
 
   .description {
@@ -267,7 +194,7 @@ const cards: TrainingTypeCard[] = [
   }
 
   @media (min-width: 640px) {
-    .title span {
+    .section-title span {
       display: block;
     }
   }

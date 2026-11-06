@@ -1,0 +1,83 @@
+---
+import type { TrainingType } from './training-type';
+
+interface Props {
+  type: TrainingType;
+}
+
+interface Bar {
+  ratio: number;
+  muted?: boolean;
+}
+
+const designHeight = 64;
+const tall: Bar = { ratio: 1 };
+const rest = (height: number): Bar => ({
+  ratio: height / designHeight,
+  muted: true,
+});
+
+const intervalsBars = Array.from({ length: 28 }, (_, index) =>
+  index % 2 === 1 ? tall : rest(index % 14 === 0 ? 35 : 22),
+);
+
+const runningBars = [
+  rest(32),
+  rest(32),
+  ...Array.from({ length: 12 }, (_, index) =>
+    index % 2 === 0 ? tall : rest(15),
+  ),
+  rest(32),
+];
+
+const strengthBarGroups = [4, 4, 3, 3, 3].map((sets) =>
+  [59, 55, 51, 47]
+    .slice(0, sets)
+    .map((height) => ({ ratio: height / designHeight })),
+);
+
+const barGroupsByType: Record<TrainingType, Bar[][]> = {
+  intervals: [intervalsBars],
+  running: [runningBars],
+  strength: strengthBarGroups,
+};
+
+const { type } = Astro.props;
+---
+
+<div class="chart" aria-hidden="true">
+  {barGroupsByType[type].map((group) => (
+    <span class="bar-group" style={{ '--bars': group.length }}>
+      {group.map(({ ratio, muted }) => (
+        <span class:list={['bar', { muted }]} style={{ '--ratio': ratio }} />
+      ))}
+    </span>
+  ))}
+</div>
+
+<style>
+  .chart {
+    display: flex;
+    gap: var(--chart-group-gap);
+    align-items: flex-end;
+    height: var(--chart-height);
+  }
+
+  .bar-group {
+    display: flex;
+    flex: var(--bars) 1 calc((var(--bars) - 1) * 3px);
+    gap: 3px;
+    align-items: flex-end;
+  }
+
+  .bar {
+    flex: 1;
+    height: calc(var(--ratio) * var(--chart-height));
+    border-radius: 3px;
+    background: #fff;
+  }
+
+  .bar.muted {
+    opacity: 0.38;
+  }
+</style>
