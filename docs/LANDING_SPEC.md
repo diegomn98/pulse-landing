@@ -85,7 +85,7 @@ Comprueba los nombres exactos en `../pulse-imagenes/INDICE.md`.
 - Insignias «Próximamente en» App Store y Google Play.
 
 ### Preguntas · `#preguntas`
-Cuatro preguntas desplegables con `<details>`:
+Título «Preguntas» y cuatro tarjetas fijas, con la pregunta como encabezado y la respuesta siempre visible:
 - «¿Cuándo sale?» · «Estamos terminándola. Si te apuntas, serás de los primeros en enterarte y en probarla.»
 - «¿En qué dispositivos funcionará?» · «En iOS, en Android y en el navegador. Con la misma cuenta tendrás tus rutinas en todos.»
 - «¿Necesito crear una cuenta?» · «No. Puedes empezar a entrenar sin registrarte y crear la cuenta después, si quieres guardar tu progreso.»

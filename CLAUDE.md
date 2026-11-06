@@ -41,7 +41,7 @@ Repositorios hermanos: `pulse-web` (app web) y `pulse-supabase` (backend común:
 ## Stack
 
 - Astro estable más reciente, salida estática, TypeScript strict y CSS propio con los tokens de `docs/BRAND.md` como propiedades CSS. Sin frameworks de UI ni de CSS.
-- JavaScript en el cliente solo donde haga falta: formulario, cambio de tema, control de pausa de animaciones y, si llega a existir, el aviso de cookies. TypeScript sin dependencias. Las preguntas usan `<details>`.
+- JavaScript en el cliente solo donde haga falta: formulario, cambio de tema, control de pausa de animaciones y, si llega a existir, el aviso de cookies. TypeScript sin dependencias.
 - Imágenes con el sistema de imágenes integrado de Astro (AVIF o WebP, tamaños explícitos).
 - La lista de espera se envía a la Edge Function `join-waitlist` de `pulse-supabase`. Este repositorio no tiene carpeta `supabase/` ni crea tablas o funciones: si hace falta un cambio en el backend, se pide en `pulse-supabase`.
 - Tests: Vitest para la lógica del formulario; Playwright para E2E, accesibilidad y capturas.
