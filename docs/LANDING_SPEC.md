@@ -94,14 +94,14 @@ Título «Preguntas» y cuatro tarjetas fijas, con la pregunta como encabezado y
 ### Cierre
 - «Sin días fijos. Sin presión. Solo lo que toca.»
 - Título: «Sé de los primeros en probarla.» Texto: «Déjanos tu email y te avisamos el día que salga. Nada más.»
-- Segundo formulario con el botón «Apuntarme a la lista».
+- Botón «Apuntarme a la lista»: enlace a `#apuntate` que lleva al formulario del hero y pone el foco en el campo de email. Cuando la persona ya se ha apuntado, su texto pasa a «Ya estás en la lista».
 
 ### Pie
 - Logo, enlaces «Privacidad», «Términos», «Cookies», «Configurar cookies» (solo si hay aviso de cookies) y «Contacto» (dirección por decidir), y «© 2026 PULSE».
 
 ## 5. Formulario de la lista de espera
 
-Hay dos instancias (hero y cierre) con el mismo comportamiento y el mismo estado: si una persona se apunta en una, las dos muestran el estado apuntado.
+Hay un solo formulario, en el hero. El botón del cierre lleva a él (sección 4).
 
 | Campo | Comportamiento |
 |---|---|
@@ -127,7 +127,7 @@ El backend vive en `pulse-supabase`: tabla `marketing.waitlist`, funciones `join
 
 - Envía `POST` a `${PUBLIC_FUNCTIONS_URL}/join-waitlist`, con la clave publicable en la cabecera `apikey`, y el cuerpo `{ email, platforms, source, website }`:
   - `platforms`: los valores `ios`, `android` y `web` marcados.
-  - `source`: `hero` o `footer`, según el formulario.
+  - `source`: siempre `hero`. El backend también admite `footer`, que queda sin uso desde que el cierre no tiene formulario.
   - `website`: el campo trampa, vacío salvo que lo rellene un bot.
 - Respuestas:
 
