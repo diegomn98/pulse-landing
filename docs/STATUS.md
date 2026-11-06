@@ -79,11 +79,10 @@ Notas de «Ejercicios»:
 - Componentes: `Exercises` (sección), `ExerciseSheet` (móvil con la ficha de Press banca, en HTML dentro de `PhoneFrame`), `NewExerciseCard` y `ExerciseTicker`. Valores en `docs/BRAND.md` › Ejercicios de la landing. E2E en `e2e/exercises.spec.ts`.
 - La ficha y la tarjeta son contenido de ejemplo: su texto está en el HTML para lectores de pantalla, sin encabezados ni botones («Guardar en mis ejercicios» es texto con aspecto de botón, como «Empezar»).
 - La etiqueta usa `strength-text` y no el naranja claro de la captura en claro, por contraste (mismo criterio que en las secciones anteriores).
-- Cinta (decidido sin captura que lo muestre): la primera fila va hacia la izquierda y la segunda hacia la derecha, a 50 s por vuelta. Cada fila repite su lista tres veces; solo la primera copia llega a los lectores de pantalla.
+- Cinta según `docs/LANDING_SPEC.md` › Ejercicios: píldoras, sentido y duración de cada fila. Cada fila repite su lista tres veces; solo la primera copia llega a los lectores de pantalla.
 - Desviación por accesibilidad (WCAG 2.2.2): botón de pausa (`PauseButton`) debajo de la cinta, alineado a la derecha del contenido. No está en las capturas. La cinta también se pausa al pasar el ratón.
 - Entre 640 y 960 px, apilado, con el móvil centrado y la tarjeta 168 px a su izquierda. No hay captura a 834.
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema corta las líneas en otros sitios y a 375 px el título ocupa tres líneas; dentro de la ficha, los textos pequeños usan la fuente del sistema y se ven algo distintos; la inclinación y el brillo naranja del móvil son aproximados.
-- Pendiente de confirmar: en la cinta de la captura hay dos píldoras cortadas por el borde («Dom…» en la primera fila y otra sin texto visible en la segunda). No se han incluido porque su nombre no se lee entero.
 
 ### Fase 3 · Formulario
 - [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.
