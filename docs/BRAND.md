@@ -78,6 +78,7 @@ Valores medidos en las capturas de `03-landing`.
 - Cabecera: radio 24 px; 98 px de alto en escritorio y 78 px en móvil, separada 18 px y 12 px del borde superior. Contenido a 1200 px de ancho máximo con margen lateral de 20 px.
 - Cabecera fija al hacer scroll. En cuanto la página baja, debajo del fondo y el borde de la captura aparece una capa con `header-scrolled-bg` (el color `bg` al 85 %) y `backdrop-filter: blur(24px) saturate(160%)`, para que el contenido que pasa por debajo no se mezcle con los enlaces. Con `prefers-reduced-transparency: reduce`, esa capa usa `bg` opaco y sin desenfoque.
 - Logotipo: «pulse» a 27 px en la cabecera de escritorio, 23 px en la de móvil y 21 px en el pie.
+- Pie: borde superior `line`, texto en 14/20 px y relleno de 15 px arriba y 28 px abajo en escritorio (16 y 37 px en móvil). Desde 960 px, logo, enlaces y © en fila con `space-between`; por debajo, apilados. Logo y enlaces a 44 px de alto, con 22 px entre enlaces.
 
 ## Hero de la landing
 
@@ -216,6 +217,26 @@ Valores medidos en las capturas de `03-landing`.
 - Tarjetas fijas con `feature-card-bg`, borde de 1 px con `feature-card-border`, radio 22 px y relleno de 20 px arriba y abajo y 22 px a los lados. 14 px de separación.
 - Pregunta en 18/23 px 700 con `ink`; respuesta en 15/22,5 px con `sub`, 6 px por debajo.
 - Dos columnas desde 640 px; por debajo, apiladas. No hay captura a 834.
+
+## Cierre de la landing
+
+Valores medidos en las capturas de `03-landing`.
+
+| Token | Claro | Oscuro |
+|---|---|---|
+| `motto-muted` «Sin días fijos. Sin presión.» | `#818b9d` | `rgba(255, 255, 255, .36)` |
+| `motto-accent` gradiente de «Solo lo que toca.» | `linear-gradient(90deg, #2457ff, #15803d, #c2560a)` | `linear-gradient(90deg, #8aa4ff, #34c46e, #f2902f)` |
+| `closing-card-shadow` brillo azul de la tarjeta, que llega por encima del pie | `0 46px 120px -46px rgba(36, 87, 255, .9)` | igual |
+| `closing-button-shadow` | `0 28px 28px -18px rgba(10, 30, 120, .4)` | igual |
+| `closing-bar` barras de la tarjeta | `rgba(255, 255, 255, .16)` | igual |
+
+- Frase centrada en Figtree 800, de 40 px en móvil a 76 px en escritorio, interlineado 1,04 y `letter-spacing: -.045em`, a 1000 px de ancho máximo para que corte después de «Solo». El gradiente recorre «Solo lo que toca.» de seguido aunque ocupe dos líneas.
+- En la captura, el gris de la frase es `#8a94a6` en claro y blanco al 28 % en oscuro (2,8:1 y 2,3:1). `motto-muted` lo oscurece o aclara lo justo para el 3:1 de texto grande.
+- Separación: 170 px en escritorio y 100 px en móvil entre las tarjetas de «Preguntas» y la parte alta de la frase (la sección pone 88 y 47 px encima); 124 y 101 px entre la base de la última línea y la tarjeta.
+- Tarjeta con `intervals-gradient`, radio 40 px, `closing-card-shadow`, texto blanco centrado y relleno de 80/40/140 px en escritorio y 44/24/120 px en móvil (el inferior va del botón al borde). A 70 px del borde del pie en escritorio y a 44 px en móvil. Igual en los dos temas.
+- Título con el estilo de «Una sola app» (de 36 a 56 px) y texto en 17/26 px en móvil y 20/31 px desde 640 px, los dos a 540 px de ancho máximo; el texto, 15 px por debajo del título.
+- Botón: enlace en píldora blanca de 58 px de alto con 30 px de relleno lateral, 20 px por debajo del texto, Figtree 18 px 800 en `intervals-deep` y `closing-button-shadow`. Anillo de foco blanco.
+- Barras: 40, pegadas al borde inferior con 20 px a los lados y 6 px de separación (23 px de ancho en escritorio, unos 2 px en móvil), radio de 3 px arriba y alturas fijas entre 36 y 120 px. La tarjeta recorta las de las esquinas. Quietas.
 
 ## Botón de pausa
 

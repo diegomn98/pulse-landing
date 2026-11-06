@@ -1,6 +1,6 @@
 # Estado
 
-Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios», «Lo que incluye», «Plataformas», «Preguntas» y pie.
+Fases 0 y 1 terminadas. Fase 2 en marcha: la portada tiene cabecera, hero, «Una sola app», «Cómo funciona», «Ejercicios», «Lo que incluye», «Plataformas», «Preguntas», cierre y pie.
 
 ## Plan por fases
 
@@ -32,7 +32,7 @@ Notas de la base visual:
 - Nombre accesible del botón de tema: «Modo oscuro» con `aria-pressed` (aprobado).
 - La cabecera es fija al hacer scroll, con el fondo y el borde de las capturas. Las anclas dejan sitio debajo de ella con `scroll-padding-top`.
 - Fondo de la cabecera con scroll (decidido): con el fondo de las capturas, el contenido que pasaba por debajo se mezclaba con los enlaces. A partir del primer píxel de scroll aparece el color de la página al 85 % con el desenfoque de `docs/BRAND.md`; con transparencia reducida, fondo opaco sin desenfoque. Solo CSS (animación ligada al scroll que cambia la opacidad); en navegadores sin `animation-timeline` la capa se ve siempre.
-- Diferencias que quedan con las capturas: los brillos azules del fondo (arriba y encima del pie) pertenecen al hero y al cierre y llegan en la fase 2; el texto usa la pila del sistema, que es la correcta; las capturas se generaron con otra fuente y esa diferencia no se corrige.
+- Diferencias que quedan con las capturas: los brillos azules del fondo (arriba y encima del pie) llegaron con el hero y el cierre; el texto usa la pila del sistema, que es la correcta; las capturas se generaron con otra fuente y esa diferencia no se corrige.
 - «Apúntate» enlaza a `#apuntate`, que tendrá el formulario del hero en la fase 2. Los enlaces de sección apuntan a anclas que se crean en la fase 2 y los del pie a páginas de la fase 5.
 
 ### Fase 2 · Secciones
@@ -43,11 +43,11 @@ Notas de la base visual:
 - [x] Lo que incluye.
 - [x] Plataformas.
 - [x] Preguntas.
-- [ ] Cierre y pie.
+- [x] Cierre y pie.
 - [ ] Capturas de la app optimizadas en `src/assets` y marcos de móvil (hechas las del hero: Inicio claro y oscuro, y sesión de running).
 
 Notas del hero:
-- Componentes: `Hero`, `WaitlistForm` (se reutilizará en el cierre), `StoreBadges` (también para Plataformas), `PhoneFrame` y `HeroPhones` (móviles y pedestal de barras). Valores nuevos en `docs/BRAND.md` › Hero de la landing.
+- Componentes: `Hero`, `WaitlistForm` (único formulario: el cierre enlaza a él), `StoreBadges` (también para Plataformas), `PhoneFrame` y `HeroPhones` (móviles y pedestal de barras). Valores nuevos en `docs/BRAND.md` › Hero de la landing.
 - El móvil de Inicio cambia de pantalla con el tema (clara u oscura), como en las capturas (aprobado). Solo se descarga la del tema activo.
 - Dos columnas desde 1100 px; por debajo, apilado. En móvil (<640 px) solo se ve el móvil de Inicio, como en la captura; desde 640 px, los dos. No hay captura a 834.
 - Pantallas de los móviles en AVIF con WebP de respaldo y tamaños explícitos. Van en diferido con `fetchpriority="high"` y no con prioridad, porque la pantalla depende del tema y precargarla obligaría a bajar las dos. Revisar el LCP en la fase 6.
@@ -107,12 +107,24 @@ Notas de «Preguntas»:
 - Componente `Faq`. Valores en `docs/BRAND.md` › Preguntas de la landing. E2E en `e2e/faq.spec.ts`.
 - Tarjetas fijas, con la pregunta como `h3` y la respuesta en un párrafo, sin `<details>` (decidido por Diego: las capturas las muestran siempre abiertas y sin icono). Corregido en `docs/LANDING_SPEC.md`; también se ha quitado de `CLAUDE.md` › Stack la frase «Las preguntas usan `<details>`». El ADR 0001 sigue hablando de «preguntas desplegables» en su contexto.
 - Separación con «Plataformas» medida en las capturas: 148 px en escritorio y 92 px en móvil entre el borde de la tarjeta y la parte alta del texto del título. La sección pone 68 y 40 px encima, los mismos que «Plataformas», así que entre los dos bloques quedan 140 y 88 px, igual que entre «Lo que incluye» y «Plataformas».
-- Debajo deja 72 px en escritorio y 48 px en móvil; el resto hasta el cierre (la captura deja 169 y 99 px hasta «Sin días fijos») lo pondrá esa sección.
+- Debajo deja 72 px en escritorio y 48 px en móvil; el resto hasta el cierre (170 y 100 px hasta «Sin días fijos») lo pone esa sección.
 - Dos columnas desde 640 px: a 834 px, en una sola columna, las respuestas pasarían de 100 caracteres por línea. No hay captura a 834.
 - Diferencias que quedan con las capturas (aceptadas): la fuente del sistema es más estrecha y corta las líneas en otros sitios (en móvil, las dos primeras respuestas ocupan dos líneas en lugar de tres y la sección queda unos 45 px más baja; en escritorio, las tarjetas miden lo mismo), y el texto queda 1 o 2 px más abajo dentro de la tarjeta; en móvil, hay 1 px más entre el título y las tarjetas.
 
+Notas del cierre y el pie:
+- Componente `Closing`. Valores en `docs/BRAND.md` › Cierre de la landing (y el pie, en › Cabecera y pie). E2E en `e2e/closing.spec.ts`.
+- Sin segundo formulario (decidido por Diego): las capturas solo muestran el botón. «Apuntarme a la lista» es un enlace a `#apuntate` que lleva al formulario del hero y pone el foco en el campo de email, como en el diseño original. El foco necesita JavaScript (un script corto en el componente, parte del formulario que permite `CLAUDE.md` › Stack); sin él, el enlace lleva igualmente al formulario. Corregido en `docs/LANDING_SPEC.md`. `WaitlistForm` pierde la prop `source`, que solo distinguía las dos instancias.
+- El valor `footer` de `source` que admite el backend queda sin uso: la landing enviará siempre `hero`. No se ha tocado `pulse-supabase`.
+- El brillo de encima del pie que quedaba pendiente es la sombra azul de la tarjeta, igual en los dos temas; pasa por detrás del borde del pie, como en las capturas.
+- Contraste (aprobado de antemano): el gris de «Sin días fijos. Sin presión.» da 2,3:1 en oscuro y 2,8:1 en claro en la captura; se usa blanco al 36 % y `#818b9d`, lo justo para el 3:1 de texto grande. El texto de la tarjeta es blanco opaco y no al 86 % de la captura, que bajaría de 4,5:1 sobre el inicio del gradiente (mismo criterio que en «Una sola app»).
+- Las barras de la tarjeta son quietas: las capturas son estáticas y la spec no habla de animarlas.
+- Por debajo de 960 px, la separación y el relleno de móvil. A 834 px la frase mide unos 55 px y corta en «Solo lo / que toca.». No hay captura a 834.
+- Pie revisado contra las capturas: en escritorio coincide (borde, posición del texto y alto) tras quitar 3 px de relleno arriba. En móvil, el logo coincide tras quitar 4 px arriba; el © sube 10 px y el relleno inferior pasa a 37 px, como en la captura.
+- Diferencias que quedan con las capturas (aceptadas): en escritorio, la fuente del sistema deja el texto de la tarjeta en una línea («Nada más.» no baja), así que la tarjeta mide 458 px y no 489; los grises de la frase y el texto de la tarjeta, por contraste; en el pie de móvil, los enlaces quedan 12 px más abajo por los 44 px de alto, y ocupan una fila y no dos porque «Configurar cookies» y «Contacto» siguen fuera (aviso de cookies sin aprobar y dirección sin decidir), así que el pie es unos 18 px más bajo; en escritorio, los tres enlaces quedan más a la derecha que los cinco de la captura.
+
 ### Fase 3 · Formulario
-- [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado), compartidos entre las dos instancias.
+- [ ] Validación, plataformas, campo trampa y estados (inicial, error, enviando y apuntado) del formulario del hero.
+- [ ] En el estado apuntado, el enlace del cierre pasa a «Ya estás en la lista». Entonces no hay campo de email al que llevar el foco: el enlace solo lleva al hero, que muestra «¡Estás dentro!».
 - [ ] Tests de la validación y de la frase de plataformas.
 
 ### Fase 4 · Conexión con la lista de espera
